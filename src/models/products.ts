@@ -1,5 +1,6 @@
 /* Product type */
 export type Product = {
+  id?: string;
   name: string;
   product_variable: string;
 };

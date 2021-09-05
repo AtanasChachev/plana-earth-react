@@ -1,0 +1,14 @@
+button {
+  &.MuiButton-root {
+    border-width: 2px;
+    border-style: solid;
+    border-color: var(--clr-caribbean-green);
+    text-transform: none;
+
+    &.MuiButton-containedPrimary {
+      &:hover {
+        background-color: var(--btn-primary-hover);
+      }
+    }
+  }
+}

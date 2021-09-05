@@ -1,0 +1,34 @@
+@import 'styles/utils/mixins';
+
+.section {
+  padding: 20px;
+  
+  &__inner {
+    background-color: var(--clr-white);
+    box-shadow: 0 0 16px 16px var(--box-shadow);
+    border-radius: 4px;
+
+    &--full-height {
+      @include breakpoint(min, width, 960px) {
+        height: calc(100vh - 40px);
+        overflow: auto;
+      }
+    }
+
+    &__header {
+      padding: 14px 10px;
+      border-radius: 4px 4px 0 0;
+      background-color: var(--clr-white-ice);
+
+      &__title {
+        margin: 0;
+        letter-spacing: 0.5px;
+        font-weight: 400;
+      }
+    }
+
+    &__content {
+      padding: 20px;
+    }
+  }
+}

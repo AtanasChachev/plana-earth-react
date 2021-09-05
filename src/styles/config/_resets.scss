@@ -1,0 +1,16 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: var(--clr-concrete);
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+  outline: none;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  text-decoration: none;
+  font-family: 'Roboto', sans-serif;
+}

@@ -1,7 +1,7 @@
-import { ProductState } from './products';
+import { ProductState, Product } from './products';
 
 export type State = {
-  products: ProductState;
+  productsState: ProductState;
 };
 
 export type StateAction = {

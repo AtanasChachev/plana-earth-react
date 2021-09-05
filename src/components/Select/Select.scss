@@ -1,0 +1,20 @@
+.select {
+  width: 100%;
+
+  &.MuiFormControl-root {
+    margin-bottom: 20px;
+  }
+
+  &__label {
+    &.Mui-focused {
+      &.MuiFormLabel-root {
+        color: var(--clr-black);
+      }
+    }
+  }
+
+  &__option,
+  &__form {
+    text-transform: capitalize;
+  }
+}

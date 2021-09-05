@@ -2,7 +2,7 @@ import { createStore, combineReducers } from 'redux';
 import ProductsReducer from './reducers/products';
 
 const reducers = combineReducers({
-  products: ProductsReducer,
+  productsState: ProductsReducer,
 });
 
 export const store = createStore(reducers);
