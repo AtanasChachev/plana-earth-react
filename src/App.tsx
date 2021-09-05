@@ -1,26 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from 'react';
+import './styles/styles.scss';
 
-function App() {
+import { productsService } from './services/products-service';
+import { ProductsHTTPResponse } from './models/products';
+
+const App = (): JSX.Element => {
+  const fetchProducts = async () => {
+    try {
+      const { data }: ProductsHTTPResponse = await productsService.getProducts() as ProductsHTTPResponse;
+      
+      if (data && data.length) {
+        console.log(data);
+      }
+    } catch (e) {}
+  };
+
+  useEffect(() => {
+    void fetchProducts();
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Project Init</h1>
     </div>
   );
-}
+};
 
 export default App;
