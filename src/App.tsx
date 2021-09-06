@@ -2,13 +2,15 @@ import React, { useEffect, useCallback } from 'react';
 import './styles/styles.scss';
 
 import { productsService } from 'services/products-service';
-import { ProductsHTTPResponse } from 'models/products';
+import { ProductsHTTPResponse, ProductsDateRangeHTTPResnpose } from 'models/products';
 import { MuiThemeProvider, createTheme } from '@material-ui/core/styles';
 import { SETTINGS } from 'config/settings';
 import { Dashboard } from 'pages/index';
 import { updateProducts } from 'store/actions/products';
 import { useDispatch } from 'react-redux';
 import { Product } from 'models/products';
+import MomentUtils from '@date-io/moment';
+import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 
 /* Overriding the theme colors to match Plana Earth colors */
 const theme = createTheme({
@@ -23,6 +25,20 @@ const theme = createTheme({
 const App = (): JSX.Element => {
   const dispatch = useDispatch();
 
+  /* Assigning the date range for each product */
+  const assignDateRangeForProduct = async (productObject: Product) => {
+    try {
+      const product = productObject.name, 
+        { data }: ProductsDateRangeHTTPResnpose = await productsService.getProductDataRange({ product }) as ProductsDateRangeHTTPResnpose;
+
+      if (data) {
+        productObject.id = productObject.name;
+        productObject.first = data.first;
+        productObject.last = data.last;
+      }
+    } catch (e) { } 
+  };
+
   /* Initially fetching the products */
   const fetchProducts = useCallback(async () => {
     try {
@@ -31,7 +47,10 @@ const App = (): JSX.Element => {
       if (data && data.length) {
         const products = [...data];
 
-        products.forEach((product: Product) => product.id = product.name);
+        for (const product of products) {
+          await assignDateRangeForProduct(product);
+        }
+
         dispatch(updateProducts(products));
       }
     } catch (e) {}
@@ -42,9 +61,11 @@ const App = (): JSX.Element => {
   }, [fetchProducts]);
 
   return (
-    <MuiThemeProvider theme={theme}>
-      <Dashboard />
-    </MuiThemeProvider>
+    <MuiPickersUtilsProvider utils={MomentUtils}>
+      <MuiThemeProvider theme={theme}>
+        <Dashboard />
+      </MuiThemeProvider>
+    </MuiPickersUtilsProvider>
   );
 };
 

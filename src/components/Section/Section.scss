@@ -29,6 +29,25 @@
 
     &__content {
       padding: 20px;
+
+      &--mobile-inline-blocks {
+        @include breakpoint(max, width, 959px) {
+          display: flex;
+          flex-wrap: wrap;
+
+          > div {
+            flex: 1 1 calc(50% - 20px);
+
+            &:nth-child(2n + 1) {
+              margin-right: 10px;
+            }
+
+            &:nth-child(2n + 2) {
+              margin-left: 10px;
+            }
+          }
+        }
+      }
     }
   }
 }

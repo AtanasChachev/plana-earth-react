@@ -1,9 +1,12 @@
 button {
   &.MuiButton-root {
-    border-width: 2px;
-    border-style: solid;
-    border-color: var(--clr-caribbean-green);
     text-transform: none;
+    
+    &:not(.MuiPickersToolbarButton-toolbarBtn) {
+      border-width: 2px;
+      border-style: solid;
+      border-color: var(--clr-caribbean-green);
+    }
 
     &.MuiButton-containedPrimary {
       &:hover {

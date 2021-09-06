@@ -1,4 +1,4 @@
-import { ProductState, Product } from './products';
+import { ProductState } from './products';
 
 export type State = {
   productsState: ProductState;

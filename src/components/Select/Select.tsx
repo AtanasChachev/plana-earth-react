@@ -11,17 +11,18 @@ import './Select.scss';
 type SelectProps = {
   placeholder: string;
   options: Product[] | Countries[];
+  className?: string;
   onChange(value: string | unknown): void;
 };
 
-const SelectComponent = ({ options, placeholder, onChange }: SelectProps): JSX.Element => {
+const SelectComponent = ({ options, placeholder, className, onChange }: SelectProps): JSX.Element => {
   const [value, updateValue] = useState<string | unknown>('');
 
   return (
     <>
       {
         options && options.length && <>
-          <FormControl className="select">
+          <FormControl className={`select ${className ? className : ''}`}>
             <InputLabel className="select__label">{ placeholder }</InputLabel>
 
             <Select

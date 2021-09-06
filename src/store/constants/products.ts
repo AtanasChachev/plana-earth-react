@@ -1,1 +1,2 @@
 export const UPDATE_PRODUCTS = Symbol('UPDATE_PRODUCTS');
+export const UPDATE_CURRENT_PRODUCT = Symbol('UPDATE_CURRENT_PRODUCT');

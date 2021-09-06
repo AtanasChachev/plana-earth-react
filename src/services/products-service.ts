@@ -19,11 +19,11 @@ const productsService = {
   },
   
   getProductAverage({ product, country, start, end }: GetProductAverageProps): Promise<AxiosResponse> {
-    return apiService.get(`/${product}/average.json/country=${country}&begin=${start}&end=${end}`);
+    return apiService.get(`${product}/average.json/country=${country}&begin=${start}&end=${end}`);
   },
 
   getProductDataRange({ product }: ProductHTTPProp): Promise<AxiosResponse> {
-    return apiService.get(`/${product}/data-range.json`);
+    return apiService.get(`${product}/data-range.json`);
   },
 };
 
