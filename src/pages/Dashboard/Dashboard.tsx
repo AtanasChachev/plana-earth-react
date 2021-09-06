@@ -1,8 +1,8 @@
-import React, { useEffect, useCallback } from 'react';
+import React, { useEffect, useCallback, useState } from 'react';
 import Grid from '@material-ui/core/Grid';
 import { State } from 'models/store';
 import { useDispatch, useSelector } from 'react-redux';
-import { Section, SelectComponent, Datepicker, Chart } from 'components/index';
+import { Section, SelectComponent, Datepicker, Chart, ChartFilterButtons, EmptyResults } from 'components/index';
 import { SETTINGS } from 'config/settings';
 
 import { ProductState } from 'models/products';
@@ -10,6 +10,8 @@ import { ChartDataHTTPResponse } from 'models/chart';
 import { updateCurrentProduct, updateActiveFilters } from 'store/actions/products';
 import { productsService } from 'services/products-service';
 import { updateChartData } from 'store/actions/chart';
+import { capitalizeWords } from 'utils/helpers';
+
 import './Dashboard.scss';
 
 const Dashboard = (): JSX.Element => {
@@ -19,19 +21,25 @@ const Dashboard = (): JSX.Element => {
     currentProduct,
     activeFilters,
   }: ProductState = useSelector((state: State) => state.productsState);
- 
+
+  const [isFilterActive, updateFilterActive] = useState<boolean>(false);
+
   /* Fetching the product's average */ 
-  const fetchProductAverage = useCallback(async () => {
+  const fetchProductStatistics = useCallback(async () => {
     try { 
       const { 
         name, 
         country, 
         startDate, 
         endDate,
+        interval,
       } = activeFilters;
-      const { data }: ChartDataHTTPResponse = await productsService.getProductStatistics({ name, country, startDate, endDate, interval: 'day' }) as ChartDataHTTPResponse;
+
+      const { data }: ChartDataHTTPResponse = 
+        await productsService.getProductStatistics({ name, country, startDate, endDate, interval }) as ChartDataHTTPResponse;
  
       if (data && data.length) {
+        updateFilterActive(true);
         dispatch(updateChartData(data));
       }
     } catch (e) { } 
@@ -44,14 +52,33 @@ const Dashboard = (): JSX.Element => {
     if (optionIndex > -1) dispatch(updateCurrentProduct(products[optionIndex]));
   };
 
+  /* Rendering the title of the chart section's holder */
+  const renderChartTitle = (): string => {
+    let title = '';
+    
+    if (isFilterActive) {
+      title = `Showing data for: ${capitalizeWords(activeFilters.name)} in ${activeFilters.country.name}`;
+    }
+    
+    return title;
+  };
+
   useEffect(() => {
     if (activeFilters.name.length &&
-        activeFilters.country.length &&
+        activeFilters.country.id.length &&
         activeFilters.startDate.length &&
         activeFilters.endDate.length) {
-      void fetchProductAverage();
+      void fetchProductStatistics();
     }
-  }, [activeFilters.name, activeFilters.country, activeFilters.startDate, activeFilters.endDate, activeFilters, fetchProductAverage]);
+  }, [
+    activeFilters.interval, 
+    activeFilters.name, 
+    activeFilters.country, 
+    activeFilters.startDate, 
+    activeFilters.endDate, 
+    activeFilters, 
+    fetchProductStatistics,
+  ]);
 
   return (
     <Grid container className="dashboard"> 
@@ -67,13 +94,13 @@ const Dashboard = (): JSX.Element => {
             onChange={(value: string) => {
               dispatch(updateActiveFilters('name', value));
               updateCurrentProductCallback(value);
-            }} />
+            }} /> 
 
           <SelectComponent 
             className={`dashboard__form__field dashboard__form__field--animated ${currentProduct ? 'dashboard__form__field--animated-visible' : ''}`}
             options={[...SETTINGS.countries]}
             placeholder={'Country'}
-            onChange={(value: string) => dispatch(updateActiveFilters('country', value))} />
+            onChange={(value: string, name?: string) => dispatch(updateActiveFilters('country', { id: value, name: name }))} />
 
           <Datepicker 
             className={`dashboard__form__field dashboard__form__field--animated ${currentProduct ? 'dashboard__form__field--animated-visible' : ''}`}
@@ -94,8 +121,15 @@ const Dashboard = (): JSX.Element => {
       </Grid>
 
       <Grid item xs={12} md={8} lg={9}>
-        <Section isFullHeight={true}>
-            <Chart />
+        <Section 
+          headerTitle={renderChartTitle()}
+          isFullHeight={true}>
+            {
+              isFilterActive ? <>
+                <ChartFilterButtons onClick={(interval: string) => dispatch(updateActiveFilters('interval', interval))} />
+                <Chart />
+              </> :  <EmptyResults />
+            }
         </Section>
       </Grid>
     </Grid>

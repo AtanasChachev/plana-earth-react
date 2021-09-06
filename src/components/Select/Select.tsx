@@ -1,18 +1,14 @@
 import React, { useState } from 'react';
 import { Product } from 'models/products';
 import { Countries } from 'models/settings';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-
+import { InputLabel, MenuItem, FormControl, Select } from '@material-ui/core';
 import './Select.scss';
 
 type SelectProps = {
   placeholder: string;
   options: Product[] | Countries[];
   className?: string;
-  onChange(value: string | unknown): void;
+  onChange(value: string | unknown, name?: string): void;
 };
 
 const SelectComponent = ({ options, placeholder, className, onChange }: SelectProps): JSX.Element => {
@@ -29,8 +25,15 @@ const SelectComponent = ({ options, placeholder, className, onChange }: SelectPr
               className="select__form"
               value={value}
               onChange={(event: React.ChangeEvent<{ value: unknown }>) => {
+                let name = '';
+                const getOptionIndex = [...options].findIndex((option: Product | Countries) => option.id);
+
+                if (getOptionIndex > -1) {
+                  name = options[getOptionIndex].name;
+                }
+
                 updateValue(event.target.value);
-                onChange && onChange(event.target.value);
+                onChange && onChange(event.target.value, name);
               }}>
               {
                 options.map((option: Product | Countries, index: number) => 

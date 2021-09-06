@@ -1,0 +1,20 @@
+.empty-results {
+  max-width: 440px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+
+  &__image {
+    max-width: 200px;
+    height: auto;
+  }
+
+  &__title {
+    margin: 10px 0;
+  }
+
+  &__description {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+}

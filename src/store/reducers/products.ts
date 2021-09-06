@@ -7,7 +7,10 @@ const productsState: ProductState = {
   products: [],
   activeFilters: {
     name: '',
-    country: '',
+    country: {
+      id: '',
+      name: '',
+    },
     startDate: '',
     endDate: '',
     interval: 'day',

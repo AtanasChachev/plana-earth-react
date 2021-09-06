@@ -1,0 +1,21 @@
+.chart-buttons {
+  display: inline-block;
+  border-width: 0 0 1px;
+  border-style: solid;
+  border-color: var(--clr-caribbean-green);
+  margin-bottom: 20px;
+
+  &__button {
+    &.MuiButton-root.MuiButton-root {
+      padding: 6px 20px;
+      border-width: 0 1px 0 0;
+      border-radius: 0;
+      font-weight: 400;
+    }
+
+    &--active {
+      background-color: var(--clr-caribbean-green) !important;
+      color: var(--clr-white) !important;
+    }
+  }
+}

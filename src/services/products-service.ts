@@ -19,7 +19,7 @@ const productsService = {
   
   /* Fetching product statistics */
   getProductStatistics({ name, country, startDate, endDate, interval }: ActiveProductFilters): Promise<AxiosResponse> {
-    return apiService.get(`${name}/statistics.json?country=${country}&begin=${startDate}&end=${endDate}&interval=${interval}`);
+    return apiService.get(`${name}/statistics.json?country=${country.id}&begin=${startDate}&end=${endDate}&interval=${interval}`);
   },
 };
 

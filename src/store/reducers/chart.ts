@@ -24,7 +24,7 @@ const ChartReducer = (
         firstElement = statistics[0].value;
       
       const localState: ChartState = { ...state };
-      const labels: string[] = [...statistics].map((product: ProductStatistics) => formatDate(product.time.interal_start, 'YYYY-MM-DD'));
+      const labels: string[] = [...statistics].map((product: ProductStatistics) => formatDate(product.time.interval_start, 'YYYY-MM-DD'));
 
       localState.data.labels = [];
       localState.data.datasets = [];

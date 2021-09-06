@@ -11,7 +11,7 @@ export const updateCurrentProduct = (product: Product): UpdateCurrentProductRedu
   payload: product,
 });
 
-export const updateActiveFilters = (propName: string, propValue: string): UpdateActiveFiltersReducer => ({
+export const updateActiveFilters = (propName: string, propValue: string | { id: string; name?: string; }): UpdateActiveFiltersReducer => ({
   type: UPDATE_ACTIVE_FILTERS,
   payload: {
     propName,

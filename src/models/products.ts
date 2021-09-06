@@ -9,7 +9,10 @@ export type Product = {
 
 export type ActiveProductFilters = {
   name: string;
-  country: string;
+  country: {
+    id: string;
+    name: string;
+  };
   startDate: string;
   endDate: string;
   interval: string;
@@ -30,7 +33,7 @@ export type UpdateActiveFiltersReducer = {
   type: symbol;
   payload: {
     propName: string;
-    propValue: string;
+    propValue: string | { id: string; name?: string; };
   };
 };
 
@@ -54,7 +57,7 @@ export type ProductAverage = {
 
 export type ProductStatistics  = {
   time: {
-    interal_start: string;
+    interval_start: string;
     max: string;
     min: string;
   },
@@ -70,7 +73,7 @@ type ProductStatisticsValue = {
   count: number;
   max: number;
   min: number;
-  'standart deviation': number; 
+  standarddeviation: number; 
 };
 
 /* Type for the HTTP responses for the products */
