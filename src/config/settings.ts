@@ -23,4 +23,11 @@ export const SETTINGS: Settings = {
       name: 'United Kingdom',
     },
   ],
+  chartColors: {
+    average: '#1c73ff',
+    count: '#ffa805',
+    min: '#ffadad',
+    max: '#00aa58',
+    standarddeviation: '#66e5a8',
+  },
 };

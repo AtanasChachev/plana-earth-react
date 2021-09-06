@@ -1,10 +1,17 @@
-import { UPDATE_PRODUCTS, UPDATE_CURRENT_PRODUCT } from '../constants/products';
+import { UPDATE_PRODUCTS, UPDATE_CURRENT_PRODUCT, UPDATE_ACTIVE_FILTERS } from '../constants/products';
 import { ProductState } from '../../models/products';
 import { StateAction } from '../../models/store';
  
 const productsState: ProductState = {
   currentProduct: null,
   products: [],
+  activeFilters: {
+    name: '',
+    country: '',
+    startDate: '',
+    endDate: '',
+    interval: 'day',
+  },
 };
 
 const ProductsReducer = (
@@ -18,6 +25,15 @@ const ProductsReducer = (
 
     case UPDATE_CURRENT_PRODUCT: {
       return { ...state, currentProduct: action.payload };
+    }
+
+    case UPDATE_ACTIVE_FILTERS : {
+      const { propName, propValue } = action.payload;
+      const localState = { ...state };
+
+      localState.activeFilters[propName] = propValue;
+      
+      return localState;
     }
 
     default: {

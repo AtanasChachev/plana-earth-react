@@ -28,7 +28,11 @@
     }
 
     &__content {
-      padding: 20px;
+      padding: 10px;
+
+      @include breakpoint(min, width, 960px) {
+        padding: 20px;
+      }
 
       &--mobile-inline-blocks {
         @include breakpoint(max, width, 959px) {

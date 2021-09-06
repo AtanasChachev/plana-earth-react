@@ -7,27 +7,31 @@
   }
 
   &__form__field {
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(10px);
-    transition: transform .4s ease-in-out, opacity .4s ease-in-out, visibility .4s ease-in-out;
+    margin-bottom: 14px !important;
 
-    &:nth-child(2) {
-      transition-delay: .2s;
-    }
-
-    &:nth-child(3) {
-      transition-delay: .4s;
-    }
-
-    &:nth-child(4) {
-      transition-delay: .6s;
-    }
-
-    &--visible {
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(0);
+    &--animated {
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(10px);
+      transition: transform .4s ease-in-out, opacity .4s ease-in-out, visibility .4s ease-in-out;
+  
+      &:nth-child(2) {
+        transition-delay: .2s;
+      }
+  
+      &:nth-child(3) {
+        transition-delay: .4s;
+      }
+  
+      &:nth-child(4) {
+        transition-delay: .6s;
+      }
+  
+      &-visible {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
     }
   }
 }

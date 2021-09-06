@@ -1,21 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Line } from 'react-chartjs-2';
+import { useSelector } from 'react-redux';
+import { State } from 'models/store';
 import './Chart.scss';
 
-const data = {
-  labels: ['1', '2', '3', '4', '5', '6'],
-  datasets: [
-    {
-      label: '# of Votes',
-      data: [12, 19, 3, 5, 2, 3],
-      fill: false,
-      backgroundColor: 'rgb(255, 99, 132)',
-      borderColor: 'rgba(255, 99, 132, 0.2)',
-    },
-  ],
-};
-
 const options = {
+  normalized: true,
   scales: {
     yAxes: [
       {
@@ -24,25 +14,29 @@ const options = {
         },
       },
     ],
+    xAxes: [{
+      type: 'time',
+      time: {
+        unit: 'day',
+      },
+    }],
   },
 };
 
+const Chart = ({}): JSX.Element => {
+  const { data } = useSelector((state: State) => state.chartState);
 
-const Chart = (): JSX.Element => {
+  useEffect(() => {
+    console.log(data.labels);
+    console.log(data.datasets);
+  }, [data.datasets, data.labels]);
+
   return (
     <>
-      <div className='header'>
-        <h1 className='title'>Line Chart</h1>
-        <div className='links'>
-          <a
-            className='btn btn-gh'
-            href='https://github.com/reactchartjs/react-chartjs-2/blob/master/example/src/charts/Line.js'
-          >
-            Github Source
-          </a>
-        </div>
-      </div>
-      <Line data={data} options={options} />
+      <Line data={{
+        labels: data.labels,
+        datasets: data.datasets,
+      }} options={options} />
     </>
   );
 };
