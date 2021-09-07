@@ -3,12 +3,11 @@ import './Section.scss';
 
 type SectionProps = {
   children: ReactChild | ReactChild[] | ReactChildren | ReactChildren[];
-  shAlignInlineBlockOnMobile?: boolean;
   isFullHeight?: boolean;
   headerTitle?: string;
 };
 
-const Section = ({ children, isFullHeight, headerTitle, shAlignInlineBlockOnMobile }: SectionProps): JSX.Element => {
+const Section = ({ children, isFullHeight, headerTitle }: SectionProps): JSX.Element => {
   return (
     <div className="section">
       <div className={`section__inner ${isFullHeight ? 'section__inner--full-height' : ''}`}>
@@ -20,7 +19,7 @@ const Section = ({ children, isFullHeight, headerTitle, shAlignInlineBlockOnMobi
           </>
         }
 
-        <div className={`section__inner__content ${shAlignInlineBlockOnMobile ? 'section__inner__content--mobile-inline-blocks' : ''}`}>
+        <div className="section__inner__content">
           {children}
         </div>
       </div>

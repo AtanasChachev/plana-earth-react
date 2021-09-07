@@ -19,7 +19,9 @@ const Dashboard = (): JSX.Element => {
   const { 
     products,
     currentProduct,
-    activeFilters,
+    activeFilters: {
+      name, country, startDate, endDate, interval,
+    },
   }: ProductState = useSelector((state: State) => state.productsState);
 
   const [isFilterActive, updateFilterActive] = useState<boolean>(false);
@@ -27,23 +29,17 @@ const Dashboard = (): JSX.Element => {
   /* Fetching the product's average */ 
   const fetchProductStatistics = useCallback(async () => {
     try { 
-      const { 
-        name, 
-        country, 
-        startDate, 
-        endDate,
-        interval,
-      } = activeFilters;
-
       const { data }: ChartDataHTTPResponse = 
         await productsService.getProductStatistics({ name, country, startDate, endDate, interval }) as ChartDataHTTPResponse;
  
       if (data && data.length) {
         updateFilterActive(true);
         dispatch(updateChartData(data));
+      } else {
+        updateFilterActive(false);
       }
     } catch (e) { } 
-  }, [activeFilters, dispatch]);
+  }, [country, endDate, interval, name, startDate, dispatch]);
 
   /* Updating the current chosen product in the store so we can set min / max dates for the datepickers */
   const updateCurrentProductCallback = (value: string | unknown) => {
@@ -57,37 +53,31 @@ const Dashboard = (): JSX.Element => {
     let title = '';
     
     if (isFilterActive) {
-      title = `Showing data for: ${capitalizeWords(activeFilters.name)} in ${activeFilters.country.name}`;
+      title = `Showing data for: ${capitalizeWords(name)} in ${country.name}`;
     }
+
+    console.log(country);
     
     return title;
   };
 
   useEffect(() => {
-    if (activeFilters.name.length &&
-        activeFilters.country.id.length &&
-        activeFilters.startDate.length &&
-        activeFilters.endDate.length) {
+    if (name.length &&
+        country.id.length &&
+        startDate.length &&
+        endDate.length) {
       void fetchProductStatistics();
     }
-  }, [
-    activeFilters.interval, 
-    activeFilters.name, 
-    activeFilters.country, 
-    activeFilters.startDate, 
-    activeFilters.endDate, 
-    activeFilters, 
-    fetchProductStatistics,
-  ]);
+  }, [interval, name, country, startDate, endDate, fetchProductStatistics ]);
 
   return (
     <Grid container className="dashboard"> 
       <Grid item xs={12} md={4} lg={3}>
         <Section 
-          shAlignInlineBlockOnMobile={true} 
           isFullHeight={true} 
           headerTitle='Product filters:'>
           <SelectComponent 
+            ariaLabel="Select dropdown - choose product"
             className="dashboard__form__field"
             options={products}
             placeholder={'Product'}
@@ -97,12 +87,14 @@ const Dashboard = (): JSX.Element => {
             }} /> 
 
           <SelectComponent 
+            ariaLabel="Select dropdown - choose country"
             className={`dashboard__form__field dashboard__form__field--animated ${currentProduct ? 'dashboard__form__field--animated-visible' : ''}`}
             options={[...SETTINGS.countries]}
             placeholder={'Country'}
-            onChange={(value: string, name?: string) => dispatch(updateActiveFilters('country', { id: value, name: name }))} />
+            onChange={(value: string, countryName?: string) => dispatch(updateActiveFilters('country', { id: value, name: countryName }))} />
 
           <Datepicker 
+            ariaLabel="Datepicker - choose the start date for the filter"
             className={`dashboard__form__field dashboard__form__field--animated ${currentProduct ? 'dashboard__form__field--animated-visible' : ''}`}
             label='Start Date'
             minDate={currentProduct ? currentProduct.first : ''}
@@ -111,6 +103,7 @@ const Dashboard = (): JSX.Element => {
           />
 
           <Datepicker  
+            ariaLabel="Datepicker - choose the end date for the filter"
             className={`dashboard__form__field dashboard__form__field--animated ${currentProduct ? 'dashboard__form__field--animated-visible' : ''}`}
             label='End Date'
             minDate={currentProduct ? currentProduct.first : ''}
@@ -126,9 +119,9 @@ const Dashboard = (): JSX.Element => {
           isFullHeight={true}>
             {
               isFilterActive ? <>
-                <ChartFilterButtons onClick={(interval: string) => dispatch(updateActiveFilters('interval', interval))} />
+                <ChartFilterButtons onClick={(intervalValue: string) => dispatch(updateActiveFilters('interval', intervalValue))} />
                 <Chart />
-              </> :  <EmptyResults />
+              </> : <EmptyResults />
             }
         </Section>
       </Grid>

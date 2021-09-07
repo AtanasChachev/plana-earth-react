@@ -21,9 +21,14 @@
       background-color: var(--clr-white-ice);
 
       &__title {
+        font-size: 14px;
         margin: 0;
         letter-spacing: 0.5px;
-        font-weight: 400;
+        font-weight: 300;
+
+        @include breakpoint(min, width, 960px) {
+          font-size: 18px;
+        }
       }
     }
 
@@ -32,25 +37,6 @@
 
       @include breakpoint(min, width, 960px) {
         padding: 20px;
-      }
-
-      &--mobile-inline-blocks {
-        @include breakpoint(max, width, 959px) {
-          display: flex;
-          flex-wrap: wrap;
-
-          > div {
-            flex: 1 1 calc(50% - 20px);
-
-            &:nth-child(2n + 1) {
-              margin-right: 10px;
-            }
-
-            &:nth-child(2n + 2) {
-              margin-left: 10px;
-            }
-          }
-        }
       }
     }
   }

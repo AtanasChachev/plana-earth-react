@@ -15,5 +15,6 @@ export type Settings = {
   countries: Countries[];
   chartColors: {
     [key: string]: string;
-  }
+  },
+  chartFilterButtons: string[];
 };

@@ -8,10 +8,11 @@ type SelectProps = {
   placeholder: string;
   options: Product[] | Countries[];
   className?: string;
+  ariaLabel?: string;
   onChange(value: string | unknown, name?: string): void;
 };
 
-const SelectComponent = ({ options, placeholder, className, onChange }: SelectProps): JSX.Element => {
+const SelectComponent = ({ options, placeholder, className, ariaLabel, onChange }: SelectProps): JSX.Element => {
   const [value, updateValue] = useState<string | unknown>('');
 
   return (
@@ -22,15 +23,15 @@ const SelectComponent = ({ options, placeholder, className, onChange }: SelectPr
             <InputLabel className="select__label">{ placeholder }</InputLabel>
 
             <Select
+              aria-required="true"
+              aria-label={ariaLabel}
               className="select__form"
               value={value}
               onChange={(event: React.ChangeEvent<{ value: unknown }>) => {
+                const getOptionIndex = [...options].findIndex((option: Product | Countries) => option.id === event.target.value);
                 let name = '';
-                const getOptionIndex = [...options].findIndex((option: Product | Countries) => option.id);
 
-                if (getOptionIndex > -1) {
-                  name = options[getOptionIndex].name;
-                }
+                if (getOptionIndex > -1) name = options[getOptionIndex].name;
 
                 updateValue(event.target.value);
                 onChange && onChange(event.target.value, name);

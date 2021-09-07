@@ -30,4 +30,5 @@ export const SETTINGS: Settings = {
     max: '#00aa58',
     standarddeviation: '#66e5a8',
   },
+  chartFilterButtons: ['day', 'week', 'month', 'quarter', 'year'],
 };

@@ -9,10 +9,11 @@ type DatepickerProps = {
   minDate?: Date | string;
   maxDate?: Date | string;
   className?: string;
+  ariaLabel?: string;
   onChange(date: string): void;
 };
 
-const Datepicker = ({ label, minDate, maxDate, className, onChange }: DatepickerProps): JSX.Element => {
+const Datepicker = ({ label, minDate, maxDate, className, ariaLabel, onChange }: DatepickerProps): JSX.Element => {
   const [selectedDate, setSelectedDate] = useState<Date | Moment | null>(null);
 
   const handleDateChange = (date: Date | Moment | null ) => {
@@ -22,6 +23,8 @@ const Datepicker = ({ label, minDate, maxDate, className, onChange }: Datepicker
 
   return (
     <KeyboardDatePicker
+      aria-required="true"
+      aria-label={ariaLabel}
       autoOk={true}
       className={`datepicker ${className ? className : ''}`}
       variant="inline"
