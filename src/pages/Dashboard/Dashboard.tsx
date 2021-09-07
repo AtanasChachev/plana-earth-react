@@ -11,7 +11,7 @@ import { updateCurrentProduct, updateActiveFilters } from 'store/actions/product
 import { productsService } from 'services/products-service';
 import { updateChartData } from 'store/actions/chart';
 import { capitalizeWords } from 'utils/helpers';
-import { showLoader } from 'store/actions/ui';
+import { showLoader, showToast } from 'store/actions/ui';
 
 import './Dashboard.scss';
 
@@ -45,6 +45,7 @@ const Dashboard = (): JSX.Element => {
       dispatch(showLoader(false));
     } catch (e) { 
       dispatch(showLoader(false));
+      dispatch(showToast(true, 'We could not fetch the products. Please try again'));
     } 
   }, [country, endDate, interval, name, startDate, dispatch]);
 

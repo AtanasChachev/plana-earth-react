@@ -17,4 +17,5 @@ export type Settings = {
     [key: string]: string;
   },
   chartFilterButtons: string[];
+  toastAutoDuration: number;
 };

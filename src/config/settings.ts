@@ -31,4 +31,5 @@ export const SETTINGS: Settings = {
     standarddeviation: '#66e5a8',
   },
   chartFilterButtons: ['day', 'week', 'month', 'quarter', 'year'],
+  toastAutoDuration: 2000,
 };

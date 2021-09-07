@@ -9,8 +9,10 @@ import { Dashboard } from 'pages/index';
 import { updateProducts } from 'store/actions/products';
 import { useDispatch } from 'react-redux';
 import { Product } from 'models/products';
-import MomentUtils from '@date-io/moment';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
+import { Toast } from 'components/index';
+import MomentUtils from '@date-io/moment';
+import { showToast } from 'store/actions/ui';
 
 /* Overriding the theme colors to match Plana Earth colors */
 const theme = createTheme({
@@ -26,7 +28,7 @@ const App = (): JSX.Element => {
   const dispatch = useDispatch();
 
   /* Assigning the date range for each product */
-  const assignDateRangeForProduct = async (productObject: Product) => {
+  const assignDateRangeForProduct = useCallback(async (productObject: Product) => {
     try {
       const product = productObject.name, 
         { data }: ProductsDateRangeHTTPResnpose = await productsService.getProductDataRange({ product }) as ProductsDateRangeHTTPResnpose;
@@ -36,8 +38,10 @@ const App = (): JSX.Element => {
         productObject.first = data.first;
         productObject.last = data.last;
       }
-    } catch (e) { } 
-  };
+    } catch (e) {
+      dispatch(showToast(true, 'We could not fetch the date range for all the products. Please try again'));
+    }
+  }, [dispatch]);
 
   /* Initially fetching the products */
   const fetchProducts = useCallback(async () => {
@@ -53,8 +57,10 @@ const App = (): JSX.Element => {
 
         dispatch(updateProducts(products));
       }
-    } catch (e) {}
-  }, [dispatch]);
+    } catch (e) {
+      dispatch(showToast(true, 'We could not fetch the products. Please try again'));
+    }
+  }, [assignDateRangeForProduct, dispatch]);
 
   useEffect(() => {
     void fetchProducts();
@@ -64,6 +70,7 @@ const App = (): JSX.Element => {
     <MuiPickersUtilsProvider utils={MomentUtils}>
       <MuiThemeProvider theme={theme}>
         <Dashboard />
+        <Toast />
       </MuiThemeProvider>
     </MuiPickersUtilsProvider>
   );
