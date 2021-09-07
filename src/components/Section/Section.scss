@@ -4,6 +4,7 @@
   padding: 20px;
   
   &__inner {
+    position: relative;
     background-color: var(--clr-white);
     box-shadow: 0 0 16px 16px var(--box-shadow);
     border-radius: 4px;

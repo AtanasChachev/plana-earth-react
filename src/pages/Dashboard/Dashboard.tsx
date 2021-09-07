@@ -11,6 +11,7 @@ import { updateCurrentProduct, updateActiveFilters } from 'store/actions/product
 import { productsService } from 'services/products-service';
 import { updateChartData } from 'store/actions/chart';
 import { capitalizeWords } from 'utils/helpers';
+import { showLoader } from 'store/actions/ui';
 
 import './Dashboard.scss';
 
@@ -28,6 +29,8 @@ const Dashboard = (): JSX.Element => {
 
   /* Fetching the product's average */ 
   const fetchProductStatistics = useCallback(async () => {
+    dispatch(showLoader(true));
+
     try { 
       const { data }: ChartDataHTTPResponse = 
         await productsService.getProductStatistics({ name, country, startDate, endDate, interval }) as ChartDataHTTPResponse;
@@ -38,7 +41,11 @@ const Dashboard = (): JSX.Element => {
       } else {
         updateFilterActive(false);
       }
-    } catch (e) { } 
+
+      dispatch(showLoader(false));
+    } catch (e) { 
+      dispatch(showLoader(false));
+    } 
   }, [country, endDate, interval, name, startDate, dispatch]);
 
   /* Updating the current chosen product in the store so we can set min / max dates for the datepickers */
@@ -52,12 +59,8 @@ const Dashboard = (): JSX.Element => {
   const renderChartTitle = (): string => {
     let title = '';
     
-    if (isFilterActive) {
-      title = `Showing data for: ${capitalizeWords(name)} in ${country.name}`;
-    }
+    if (isFilterActive) title = `Showing data for: ${capitalizeWords(name)} in ${country.name}`;
 
-    console.log(country);
-    
     return title;
   };
 
@@ -116,6 +119,7 @@ const Dashboard = (): JSX.Element => {
       <Grid item xs={12} md={8} lg={9}>
         <Section 
           headerTitle={renderChartTitle()}
+          shShowLoader={true}
           isFullHeight={true}>
             {
               isFilterActive ? <>
