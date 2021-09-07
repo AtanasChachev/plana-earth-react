@@ -78,7 +78,8 @@ const Dashboard = (): JSX.Element => {
     <Grid container className="dashboard"> 
       <Grid item xs={12} md={4} lg={3}>
         <Section 
-          isFullHeight={true} 
+          isFullHeight={true}
+          shAlignInlineBlockOnMobile={true}
           headerTitle='Product filters:'>
           <SelectComponent 
             ariaLabel="Select dropdown - choose product"
@@ -120,7 +121,7 @@ const Dashboard = (): JSX.Element => {
       <Grid item xs={12} md={8} lg={9}>
         <Section 
           headerTitle={renderChartTitle()}
-          shShowLoader={true}
+          shRenderLoader={true}
           isFullHeight={true}>
             {
               isFilterActive ? <>

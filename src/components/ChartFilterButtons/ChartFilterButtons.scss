@@ -1,3 +1,5 @@
+@import 'styles/utils/mixins';
+
 .chart-buttons {
   display: inline-block;
   border-width: 0 0 1px;
@@ -5,12 +7,25 @@
   border-color: var(--clr-caribbean-green);
   margin-bottom: 20px;
 
+  @include breakpoint(max, width, 767px) {
+    display: flex;
+  }
+
   &__button {
     &.MuiButton-root.MuiButton-root {
       padding: 6px 20px;
       border-width: 0 1px 0 0;
       border-radius: 0;
       font-weight: 400;
+
+      @include breakpoint(max, width, 767px) {
+        font-size: 12px;
+        min-width: 60px;
+
+        &:last-of-type {
+          border: 0;
+        }
+      }
     }
 
     &--active {

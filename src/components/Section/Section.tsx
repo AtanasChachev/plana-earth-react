@@ -6,10 +6,11 @@ type SectionProps = {
   children: ReactChild | ReactChild[] | ReactChildren | ReactChildren[];
   isFullHeight?: boolean;
   headerTitle?: string;
-  shShowLoader?: boolean;
+  shRenderLoader?: boolean;
+  shAlignInlineBlockOnMobile?: boolean;
 };
 
-const Section = ({ children, isFullHeight, headerTitle, shShowLoader }: SectionProps): JSX.Element => {
+const Section = ({ children, isFullHeight, headerTitle, shAlignInlineBlockOnMobile, shRenderLoader }: SectionProps): JSX.Element => {
   return (
     <div className="section">
       <div className={`section__inner ${isFullHeight ? 'section__inner--full-height' : ''}`}>
@@ -21,12 +22,12 @@ const Section = ({ children, isFullHeight, headerTitle, shShowLoader }: SectionP
           </>
         }
 
-        <div className="section__inner__content">
+        <div className={`section__inner__content ${shAlignInlineBlockOnMobile ? 'section__inner__content--mobile-inline-blocks' : ''}`}>
           {children}
         </div>
 
         {
-          shShowLoader && <Loader />
+          shRenderLoader && <Loader />
         }
       </div>
     </div>

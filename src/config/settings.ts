@@ -1,4 +1,5 @@
 import { Settings } from '../models/settings';
+import { isMobileDevice } from 'utils/helpers';
 
 export const SETTINGS: Settings = {
   theme: {
@@ -32,4 +33,20 @@ export const SETTINGS: Settings = {
   },
   chartFilterButtons: ['day', 'week', 'month', 'quarter', 'year'],
   toastAutoDuration: 2000,
+  chartOptions: {
+    scales: {
+      yAxes: [
+        {
+          ticks: {
+            beginAtZero: true,
+          },
+        },
+      ],
+      xAxes: [{
+        ticks:{
+          display: !isMobileDevice(),
+        },
+      }],
+    },
+  },
 };
