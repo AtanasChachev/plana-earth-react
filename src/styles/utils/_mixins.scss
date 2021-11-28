@@ -1,0 +1,8 @@
+/***
+  Creates media query with the given parameters
+  Example: @include breakpoint(min, width, 992px)
+***/
+
+@mixin breakpoint($type, $prop, $size) {
+  @media (#{$type}-#{$prop}: $size) { @content; }
+}

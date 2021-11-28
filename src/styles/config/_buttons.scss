@@ -1,0 +1,18 @@
+button {
+  &.MuiButton-root {
+    text-transform: none;
+    
+    &:not(.MuiPickersToolbarButton-toolbarBtn) {
+      border-width: 2px;
+      border-style: solid;
+      border-color: var(--clr-caribbean-green);
+      color: var(--clr-black);
+    }
+
+    &.MuiButton-containedPrimary {
+      &:hover {
+        background-color: var(--btn-primary-hover);
+      }
+    }
+  }
+}
