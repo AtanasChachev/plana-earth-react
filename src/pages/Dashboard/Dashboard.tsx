@@ -21,7 +21,8 @@ const Dashboard = (): JSX.Element => {
   return (
     <Grid container className="dashboard"> 
       <Grid item xs={12} md={4} lg={3}>
-        <Section 
+        <Section
+          isEmptyBlockActive={false} 
           isFullHeight={true}
           shAlignInlineBlockOnMobile={true}
           headerTitle='Product filters:'>
@@ -61,6 +62,7 @@ const Dashboard = (): JSX.Element => {
 
       <Grid item xs={12} md={8} lg={9}>
         <Section 
+          isEmptyBlockActive={!isFilterActive}
           headerTitle={renderChartTitle()}
           shRenderLoader={true}
           isFullHeight={true}>
