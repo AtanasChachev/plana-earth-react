@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
 import { Button } from '@material-ui/core';
 import { capitalizeWords } from 'utils/helpers';
 import { SETTINGS } from 'config/settings';
+import { useChartFilterButtons } from './useChartFilterButtons';
 
 import './ChartFilterButtons.scss';
 
-type ChartFilterButtonsType = {
+export type ChartFilterButtonsProps = {
   onClick(interval: string): void;
 };
 
-const ChartFilterButtons = ({ onClick }: ChartFilterButtonsType): JSX.Element => {
-  const [activeIndex, updateActiveIndex] = useState<number>(-1);
+const ChartFilterButtons = ({ onClick }: ChartFilterButtonsProps): JSX.Element => {
+  const { activeIndex, handleFilterButton } = useChartFilterButtons({ onClick });
 
   return (
     <div className="chart-buttons">
@@ -21,10 +21,7 @@ const ChartFilterButtons = ({ onClick }: ChartFilterButtonsType): JSX.Element =>
             key={index} 
             className={`chart-buttons__button ${index === activeIndex ? 'chart-buttons__button--active' : ''}`}
             color="primary"
-            onClick={() => {
-              onClick(interval);
-              updateActiveIndex(index);
-            }}>{capitalizeWords(interval)}</Button>) 
+            onClick={() => handleFilterButton(interval, index)}>{capitalizeWords(interval)}</Button>) 
       }
     </div>
   );

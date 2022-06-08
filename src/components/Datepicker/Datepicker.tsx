@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+
 import { KeyboardDatePicker } from '@material-ui/pickers';
-import { formatDate } from 'utils/helpers';
-import { Moment } from 'moment';
+import { useDatepicker } from './useDatepicker';
 import './Datepicker.scss';
 
-type DatepickerProps = {
+export type DatepickerProps = {
   label: string;
   minDate?: Date | string;
   maxDate?: Date | string;
@@ -14,12 +13,10 @@ type DatepickerProps = {
 };
 
 const Datepicker = ({ label, minDate, maxDate, className, ariaLabel, onChange }: DatepickerProps): JSX.Element => {
-  const [selectedDate, setSelectedDate] = useState<Date | Moment | null>(null);
-
-  const handleDateChange = (date: Date | Moment | null ) => {
-    setSelectedDate(date);
-    onChange(formatDate(date, 'YYYY-MM-DD'));
-  };
+  const {
+    selectedDate,
+    handleDateChange,
+  } = useDatepicker({ onChange });
 
   return (
     <KeyboardDatePicker

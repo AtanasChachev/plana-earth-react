@@ -12,10 +12,12 @@ export type ChartReducerData = {
 };
 
 export type ChartState = {
-  data: {
-    labels: string[];
-    datasets: ChartDataset[];
-  }
+  data: ChartStateData;
+};
+
+export type ChartStateData = {
+  labels: string[];
+  datasets: ChartDataset[];
 };
 
 export type ChartDataset = {

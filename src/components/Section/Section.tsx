@@ -1,9 +1,8 @@
-import React, { ReactChildren, ReactChild }  from 'react';
 import { Loader } from 'components/index';
 import './Section.scss';
 
 type SectionProps = {
-  children: ReactChild | ReactChild[] | ReactChildren | ReactChildren[];
+  children: JSX.Element | JSX.Element[];
   isFullHeight?: boolean;
   headerTitle?: string;
   shRenderLoader?: boolean;

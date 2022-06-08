@@ -1,3 +1,16 @@
+# Project description
+
+This projects uses Open API for fetching data about the emissions for a country. There are multiple filters (country / product / start date / end date). Using Material UI for the layout and chart.js for the chart data representation.
+
+**IMPORTANT**: Some of the filters requires a long fetching time from the API json so working example would be 
+
+```
+Product - Carbonmonoxide
+Country - Germany
+Start Date - any date of 2021
+End Date - Any date after start date in range period of few months
+```
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
