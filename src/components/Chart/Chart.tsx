@@ -1,5 +1,6 @@
 import { useChart } from './useChart';
 import { ResponsiveContainer, LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts';
+import { SETTINGS } from 'config/settings';
 import './Chart.scss';
 
 const Chart = (): JSX.Element => {
@@ -9,11 +10,11 @@ const Chart = (): JSX.Element => {
     <div className="holder">
       <ResponsiveContainer width="100%" height={400}>
         <LineChart data={data}>
-          <Line type="monotone" dataKey="average" stroke="#8884d8" />
-          <Line type="monotone" dataKey="min" stroke="red" />
-          <Line type="monotone" dataKey="standard deviation" stroke="purple" />
+          <Line type="monotone" dataKey="average" stroke={SETTINGS.chartColors.average}/>
+          <Line type="monotone" dataKey="min" stroke={SETTINGS.chartColors.min} />
+          <Line type="monotone" dataKey="standard deviation" stroke={SETTINGS.chartColors.standarddeviation} />
 
-          <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
+          <CartesianGrid stroke={SETTINGS.theme.palette.primary.main} strokeDasharray="5 5" />
           <XAxis dataKey="time" />
           <YAxis />
           <Tooltip />

@@ -1,4 +1,4 @@
-import { Settings } from '../models/settings';
+import { Settings } from 'models/settings';
 import { isMobileDevice } from 'utils/helpers';
 
 export const SETTINGS: Settings = {

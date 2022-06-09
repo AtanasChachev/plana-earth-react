@@ -15,7 +15,11 @@ export type Settings = {
   };
   countries: Countries[];
   chartColors: {
-    [key: string]: string;
+    average: string;
+    count: string;
+    min: string;
+    max: string;
+    standarddeviation: string;
   },
   chartFilterButtons: string[];
   toastAutoDuration: number;
