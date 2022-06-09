@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Chart /> <Chart /> should render properly 1`] = `
+<DocumentFragment>
+  <div
+    class="holder"
+  >
+    <div
+      class="recharts-responsive-container"
+      style="width: 100%; height: 400px;"
+    />
+  </div>
+</DocumentFragment>
+`;

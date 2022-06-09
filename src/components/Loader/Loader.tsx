@@ -1,12 +1,9 @@
-import React from 'react';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import { State } from 'models/store';
-import { UserInterfaceState } from 'models/ui';
-import { useSelector } from 'react-redux';
+import { useLoader } from './useLoader';
 import './Loader.scss';
 
 const Loader = (): JSX.Element => {
-  const { shShowLoader }: UserInterfaceState = useSelector((state: State) => state.uiState);
+  const { shShowLoader } = useLoader();
 
   return (
     <div className={`loader ${shShowLoader ? 'loader--visible' : ''}`}>

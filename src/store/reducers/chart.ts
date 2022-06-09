@@ -1,17 +1,11 @@
-/* eslint-disable @typescript-eslint/no-unsafe-return */
 import { UPDATE_CHART_DATA } from '../constants/chart';
 import { StateAction } from '../../models/store';
-import { ChartState, ChartDataset } from 'models/chart';
+import { ChartState } from 'models/chart';
 import { formatDate } from 'utils/helpers';
-import { ProductStatistics } from 'models/products';
-import { capitalizeWords } from 'utils/helpers';
-import { SETTINGS } from 'config/settings';
+import { ProductStatistics, ProductStatisticsValue } from '../../models/products';
 
 const chartState: ChartState = {
-  data: {
-    labels: [],
-    datasets: [],
-  },
+  data: [],
 };
 
 const ChartReducer = (
@@ -20,38 +14,17 @@ const ChartReducer = (
 ): ChartState => {
   switch (action.type) {
     case UPDATE_CHART_DATA: { 
-      const statistics: ProductStatistics[] = action.payload,
-        firstElement = statistics[0].value;
-      
-      const localState: ChartState = { ...state };
-      const labels: string[] = [...statistics].map((product: ProductStatistics) => formatDate(product.time.interval_start, 'YYYY-MM-DD'));
+      const statistics: ProductStatistics[] = action.payload;
+      const mappedStatistics = statistics.reduce((newArr: ProductStatisticsValue[], currentItem) => {
+        newArr.push({
+          time: formatDate(currentItem.time.interval_start, 'YYYY-MM-DD'),
+          ...currentItem.value,
+        });
 
-      localState.data.labels = [];
-      localState.data.datasets = [];
+        return newArr;
+      }, []);
 
-      for (const [key] of Object.entries(firstElement)) {
-        let data: ChartDataset = {
-          label: capitalizeWords(key),
-          fill: false,
-          data: [],
-          backgroundColor: '',
-          borderColor: '',
-        };
-        
-        const datasets: number[] = [...statistics].map((product: ProductStatistics) => product.value[key]);
-
-        data = {
-          ...data,
-          data: datasets,
-          backgroundColor: SETTINGS.chartColors[key.replace(' ', '')],
-          borderColor: SETTINGS.chartColors[key.replace(' ', '')],
-        };
-
-        localState.data.datasets.push(data);
-      }
-
-      localState.data.labels = labels;
-      return localState;
+      return { ...state, data: mappedStatistics  };
     }
 
     default: {

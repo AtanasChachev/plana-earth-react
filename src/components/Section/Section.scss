@@ -40,6 +40,12 @@
         padding: 20px;
       }
 
+      &--center {
+        display: flex;
+        align-items: center;
+        height: 100%;
+      }
+
       &--mobile-inline-blocks {
         @include breakpoint(max, width, 959px) {
           display: flex;
