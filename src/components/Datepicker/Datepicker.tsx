@@ -20,6 +20,7 @@ const Datepicker = ({ label, minDate, maxDate, className, ariaLabel, onChange }:
 
   return (
     <KeyboardDatePicker
+      data-testid="datepicker"
       aria-required="true"
       aria-label={ariaLabel}
       autoOk={true}
