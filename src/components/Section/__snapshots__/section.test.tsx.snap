@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Section /> <Section /> renders correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="section"
+  >
+    <div
+      class="section__inner section__inner--full-height"
+    >
+      <div
+        class="section__inner__header"
+      >
+        <h3
+          class="section__inner__header__title"
+        >
+          Test header title
+        </h3>
+      </div>
+      <div
+        class="section__inner__content section__inner__content--mobile-inline-blocks "
+      >
+        <div>
+          Test message
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

@@ -54,6 +54,10 @@ const handleDatepickerOpen = () => {
 };
 
 describe('<Datepicker />', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+  
   test('<Datepicker /> is rendering properly', () => {
     const { asFragment } = setup();
     
@@ -76,6 +80,7 @@ describe('<Datepicker />', () => {
     );
 
     expect(datepickerContainerAfterManipulation).toBeUndefined();
+    expect(onChange).toHaveBeenCalledTimes(1);
   });
 
   test('Entering date manually in input should update its value', () => {
