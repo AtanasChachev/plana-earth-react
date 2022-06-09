@@ -1,0 +1,90 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ChartFilterButtons /> <ChartFilterButtons /> should render correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="chart-buttons"
+  >
+    <button
+      aria-label="Chart filter button - click to filter the chart by day"
+      class="MuiButtonBase-root MuiButton-root MuiButton-text chart-buttons__button  MuiButton-textPrimary"
+      data-testid="chart-filter-button"
+      tabindex="0"
+      type="button"
+    >
+      <span
+        class="MuiButton-label"
+      >
+        Day
+      </span>
+      <span
+        class="MuiTouchRipple-root"
+      />
+    </button>
+    <button
+      aria-label="Chart filter button - click to filter the chart by week"
+      class="MuiButtonBase-root MuiButton-root MuiButton-text chart-buttons__button  MuiButton-textPrimary"
+      data-testid="chart-filter-button"
+      tabindex="0"
+      type="button"
+    >
+      <span
+        class="MuiButton-label"
+      >
+        Week
+      </span>
+      <span
+        class="MuiTouchRipple-root"
+      />
+    </button>
+    <button
+      aria-label="Chart filter button - click to filter the chart by month"
+      class="MuiButtonBase-root MuiButton-root MuiButton-text chart-buttons__button  MuiButton-textPrimary"
+      data-testid="chart-filter-button"
+      tabindex="0"
+      type="button"
+    >
+      <span
+        class="MuiButton-label"
+      >
+        Month
+      </span>
+      <span
+        class="MuiTouchRipple-root"
+      />
+    </button>
+    <button
+      aria-label="Chart filter button - click to filter the chart by quarter"
+      class="MuiButtonBase-root MuiButton-root MuiButton-text chart-buttons__button  MuiButton-textPrimary"
+      data-testid="chart-filter-button"
+      tabindex="0"
+      type="button"
+    >
+      <span
+        class="MuiButton-label"
+      >
+        Quarter
+      </span>
+      <span
+        class="MuiTouchRipple-root"
+      />
+    </button>
+    <button
+      aria-label="Chart filter button - click to filter the chart by year"
+      class="MuiButtonBase-root MuiButton-root MuiButton-text chart-buttons__button  MuiButton-textPrimary"
+      data-testid="chart-filter-button"
+      tabindex="0"
+      type="button"
+    >
+      <span
+        class="MuiButton-label"
+      >
+        Year
+      </span>
+      <span
+        class="MuiTouchRipple-root"
+      />
+    </button>
+  </div>
+</DocumentFragment>
+`;

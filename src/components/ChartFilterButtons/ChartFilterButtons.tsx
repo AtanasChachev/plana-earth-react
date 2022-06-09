@@ -16,7 +16,8 @@ const ChartFilterButtons = ({ onClick }: ChartFilterButtonsProps): JSX.Element =
     <div className="chart-buttons">
       {
         [...SETTINGS.chartFilterButtons].map((interval: string, index: number) => 
-          <Button 
+          <Button
+            data-testid="chart-filter-button"
             aria-label={`Chart filter button - click to filter the chart by ${interval}`}
             key={index} 
             className={`chart-buttons__button ${index === activeIndex ? 'chart-buttons__button--active' : ''}`}

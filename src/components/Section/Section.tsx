@@ -10,7 +10,14 @@ type SectionProps = {
   isEmptyBlockActive: boolean;
 };
 
-const Section = ({ children, isFullHeight, headerTitle, shAlignInlineBlockOnMobile, shRenderLoader, isEmptyBlockActive }: SectionProps): JSX.Element => {
+const Section = ({ 
+  children, 
+  isFullHeight, 
+  headerTitle, 
+  shAlignInlineBlockOnMobile, 
+  shRenderLoader, 
+  isEmptyBlockActive, 
+}: SectionProps): JSX.Element => {
   return (
     <div className="section">
       <div className={`section__inner ${isFullHeight ? 'section__inner--full-height' : ''}`}>
