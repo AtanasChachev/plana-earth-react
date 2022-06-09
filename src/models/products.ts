@@ -68,12 +68,13 @@ type TypeObjectKeys = {
   [key: string]: number;
 };
 
-type ProductStatisticsValue = {
+export type ProductStatisticsValue = {
   average: number;
   count: number;
   max: number;
   min: number;
-  standarddeviation: number; 
+  standarddeviation: number;
+  time?: string;
 };
 
 /* Type for the HTTP responses for the products */

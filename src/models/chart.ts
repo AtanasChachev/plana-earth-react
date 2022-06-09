@@ -1,4 +1,4 @@
-import { ProductAverage } from './products';
+import { ProductAverage, ProductStatisticsValue } from './products';
 
 export type ChartData = ProductAverage[];
 
@@ -12,7 +12,7 @@ export type ChartReducerData = {
 };
 
 export type ChartState = {
-  data: ChartStateData;
+  data: ProductStatisticsValue[];
 };
 
 export type ChartStateData = {
