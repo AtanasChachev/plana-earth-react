@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<EmptyResults /> <EmptyResults /> is rendering correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="empty-results"
+  >
+    <img
+      alt="Search Icon"
+      class="empty-results__image"
+      src="search.png"
+    />
+    <h2
+      class="empty-results__title"
+    >
+      No Results Found
+    </h2>
+    <p
+      class="empty-results__description"
+    >
+      We were not able to find results by the given criteria. Please try to change the filters in the left column.
+    </p>
+  </div>
+</DocumentFragment>
+`;

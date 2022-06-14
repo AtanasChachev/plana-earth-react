@@ -26,6 +26,7 @@ const SelectComponent = ({ options, placeholder, className, ariaLabel, onChange 
             <InputLabel className="select__label">{ placeholder }</InputLabel>
 
             <Select
+              data-testid="select"
               aria-required="true"
               aria-label={ariaLabel}
               className="select__form"

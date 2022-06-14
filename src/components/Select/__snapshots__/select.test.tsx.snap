@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Select /> <Select /> should render properly 1`] = `
+<DocumentFragment>
+  <div
+    class="MuiFormControl-root select "
+  >
+    <label
+      class="MuiFormLabel-root MuiInputLabel-root select__label MuiInputLabel-formControl MuiInputLabel-animated"
+      data-shrink="false"
+    >
+      Test Select Component
+    </label>
+    <div
+      aria-required="true"
+      class="MuiInputBase-root MuiInput-root MuiInput-underline select__form MuiInputBase-formControl MuiInput-formControl"
+      data-testid="select"
+    >
+      <div
+        aria-haspopup="listbox"
+        class="MuiSelect-root MuiSelect-select MuiSelect-selectMenu MuiInputBase-input MuiInput-input"
+        role="button"
+        tabindex="0"
+      >
+        <span>
+          ​
+        </span>
+      </div>
+      <input
+        aria-hidden="true"
+        class="MuiSelect-nativeInput"
+        tabindex="-1"
+        value=""
+      />
+      <svg
+        aria-hidden="true"
+        class="MuiSvgIcon-root MuiSelect-icon"
+        focusable="false"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M7 10l5 5 5-5z"
+        />
+      </svg>
+    </div>
+  </div>
+</DocumentFragment>
+`;
