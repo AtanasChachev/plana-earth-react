@@ -54,10 +54,6 @@ const handleDatepickerOpen = () => {
 };
 
 describe('<Datepicker />', () => {
-  beforeEach(() => {
-    jest.clearAllMocks();
-  });
-  
   test('<Datepicker /> is rendering properly', () => {
     const { asFragment } = setup();
     
@@ -70,7 +66,7 @@ describe('<Datepicker />', () => {
     expect(datepickerContainer).toBeInTheDocument();
   });
 
-  test('<Datepicker /> should close calendar on date click', async () => {
+  test('<Datepicker /> calendar should be unmounted on date click from the DOM', async () => {
     const { datepickerDateButton } = handleDatepickerOpen();
     
     fireEvent.click(datepickerDateButton);
@@ -80,6 +76,12 @@ describe('<Datepicker />', () => {
     );
 
     expect(datepickerContainerAfterManipulation).toBeUndefined();
+  });
+
+  test('<Datepicker / should execute onChange when a date is chosen>', () => {
+    const { datepickerDateButton } = handleDatepickerOpen();
+    
+    fireEvent.click(datepickerDateButton);
     expect(onChange).toHaveBeenCalledTimes(1);
   });
 
