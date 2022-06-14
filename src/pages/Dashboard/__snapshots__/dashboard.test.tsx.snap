@@ -1,0 +1,246 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Dashboard /> <Dashboard /> should render correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="MuiGrid-root dashboard MuiGrid-container"
+  >
+    <div
+      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 MuiGrid-grid-lg-3"
+    >
+      <div
+        class="section"
+      >
+        <div
+          class="section__inner section__inner--full-height"
+        >
+          <div
+            class="section__inner__header"
+          >
+            <h3
+              class="section__inner__header__title"
+            >
+              Product filters:
+            </h3>
+          </div>
+          <div
+            class="section__inner__content section__inner__content--mobile-inline-blocks "
+          >
+            0
+            <div
+              class="MuiFormControl-root select dashboard__form__field dashboard__form__field--animated "
+            >
+              <label
+                class="MuiFormLabel-root MuiInputLabel-root select__label MuiInputLabel-formControl MuiInputLabel-animated"
+                data-shrink="false"
+              >
+                Country
+              </label>
+              <div
+                aria-label="Select dropdown - choose country"
+                aria-required="true"
+                class="MuiInputBase-root MuiInput-root MuiInput-underline select__form MuiInputBase-formControl MuiInput-formControl"
+                data-testid="select"
+              >
+                <div
+                  aria-haspopup="listbox"
+                  class="MuiSelect-root MuiSelect-select MuiSelect-selectMenu MuiInputBase-input MuiInput-input"
+                  role="button"
+                  tabindex="0"
+                >
+                  <span>
+                    ​
+                  </span>
+                </div>
+                <input
+                  aria-hidden="true"
+                  class="MuiSelect-nativeInput"
+                  tabindex="-1"
+                  value=""
+                />
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSelect-icon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M7 10l5 5 5-5z"
+                  />
+                </svg>
+              </div>
+            </div>
+            <div
+              aria-label="Datepicker - choose the start date for the filter"
+              aria-required="true"
+              class="MuiFormControl-root MuiTextField-root datepicker dashboard__form__field dashboard__form__field--animated  MuiFormControl-marginNormal"
+              data-testid="datepicker"
+            >
+              <label
+                class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated"
+                data-shrink="false"
+              >
+                Start Date
+              </label>
+              <div
+                class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl MuiInputBase-adornedEnd"
+              >
+                <input
+                  aria-invalid="false"
+                  class="MuiInputBase-input MuiInput-input MuiInputBase-inputAdornedEnd"
+                  type="text"
+                  value=""
+                />
+                <div
+                  class="MuiInputAdornment-root MuiInputAdornment-positionEnd"
+                >
+                  <button
+                    class="MuiButtonBase-root MuiIconButton-root"
+                    tabindex="0"
+                    type="button"
+                  >
+                    <span
+                      class="MuiIconButton-label"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        class="MuiSvgIcon-root"
+                        focusable="false"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"
+                        />
+                        <path
+                          d="M0 0h24v24H0z"
+                          fill="none"
+                        />
+                      </svg>
+                    </span>
+                    <span
+                      class="MuiTouchRipple-root"
+                    />
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div
+              aria-label="Datepicker - choose the end date for the filter"
+              aria-required="true"
+              class="MuiFormControl-root MuiTextField-root datepicker dashboard__form__field dashboard__form__field--animated  MuiFormControl-marginNormal"
+              data-testid="datepicker"
+            >
+              <label
+                class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated"
+                data-shrink="false"
+              >
+                End Date
+              </label>
+              <div
+                class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl MuiInputBase-adornedEnd"
+              >
+                <input
+                  aria-invalid="false"
+                  class="MuiInputBase-input MuiInput-input MuiInputBase-inputAdornedEnd"
+                  type="text"
+                  value=""
+                />
+                <div
+                  class="MuiInputAdornment-root MuiInputAdornment-positionEnd"
+                >
+                  <button
+                    class="MuiButtonBase-root MuiIconButton-root"
+                    tabindex="0"
+                    type="button"
+                  >
+                    <span
+                      class="MuiIconButton-label"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        class="MuiSvgIcon-root"
+                        focusable="false"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"
+                        />
+                        <path
+                          d="M0 0h24v24H0z"
+                          fill="none"
+                        />
+                      </svg>
+                    </span>
+                    <span
+                      class="MuiTouchRipple-root"
+                    />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-8 MuiGrid-grid-lg-9"
+    >
+      <div
+        class="section"
+      >
+        <div
+          class="section__inner section__inner--full-height"
+        >
+          <div
+            class="section__inner__content  section__inner__content--center"
+          >
+            <div
+              class="empty-results"
+            >
+              <img
+                alt="Search Icon"
+                class="empty-results__image"
+                src="search.png"
+              />
+              <h2
+                class="empty-results__title"
+              >
+                No Results Found
+              </h2>
+              <p
+                class="empty-results__description"
+              >
+                We were not able to find results by the given criteria. Please try to change the filters in the left column.
+              </p>
+            </div>
+          </div>
+          <div
+            class="loader "
+          >
+            <div
+              class="MuiCircularProgress-root loader__spinner MuiCircularProgress-colorPrimary MuiCircularProgress-indeterminate"
+              role="progressbar"
+              style="width: 60px; height: 60px;"
+            >
+              <svg
+                class="MuiCircularProgress-svg"
+                viewBox="22 22 44 44"
+              >
+                <circle
+                  class="MuiCircularProgress-circle MuiCircularProgress-circleIndeterminate"
+                  cx="44"
+                  cy="44"
+                  fill="none"
+                  r="20.2"
+                  stroke-width="3.6"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  ,
+</DocumentFragment>
+`;
