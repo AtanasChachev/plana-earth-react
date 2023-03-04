@@ -20,4 +20,8 @@
     opacity: 1;
     transform: scale(1);
   }
+
+  &__spinner {
+    color: var(--clr-black);
+  }
 }

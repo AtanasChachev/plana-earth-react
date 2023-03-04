@@ -44,11 +44,10 @@ export const useDashboard = (): Return => {
         await productsService.getProductStatistics({ name, country, startDate, endDate, interval }) ;
 
       if (productStatisticsData.data && productStatisticsData.data.length) {
-        updateFilterActive(true);
         dispatch(updateChartData(productStatisticsData.data));
-      } else {
-        updateFilterActive(false);
-      }
+      } 
+
+      updateFilterActive(!!(productStatisticsData.data && productStatisticsData.data.length));
     } catch (e) { 
       dispatch(showToast(true, 'We could not fetch the products. Please try again'));
     } finally {
@@ -58,18 +57,14 @@ export const useDashboard = (): Return => {
 
   /* Updating the current chosen product in the store so we can set min / max dates for the datepickers */
   const updateCurrentProductCallback = (value: string | unknown) => {
-    const optionIndex = products.findIndex(product => product.id === value);
+    const option = products.find(product => product.id === value);
  
-    if (optionIndex > -1) dispatch(updateCurrentProduct(products[optionIndex]));
+    if (option) dispatch(updateCurrentProduct(option));
   };
 
   /* Rendering the title of the chart section's holder */
   const renderChartTitle = (): string => {
-    let title = '';
-    
-    if (isFilterActive) title = `Showing data for: ${capitalizeWords(name)} in ${country.name}`;
-
-    return title;
+    return isFilterActive ? `Showing data for: ${capitalizeWords(name)} in ${country.name}` : '';
   };
 
   const handleProductChange = (value: string) => {

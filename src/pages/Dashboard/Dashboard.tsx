@@ -26,12 +26,14 @@ const Dashboard = (): JSX.Element => {
           isFullHeight={true}
           shAlignInlineBlockOnMobile={true}
           headerTitle='Product filters:'>
-          <SelectComponent 
-            ariaLabel="Select dropdown - choose product"
-            className="dashboard__form__field"
-            options={products}
-            placeholder={'Product'}
-            onChange={handleProductChange} /> 
+            {
+              !!products.length ? <SelectComponent 
+                ariaLabel="Select dropdown - choose product"
+                className="dashboard__form__field"
+                options={products}
+                placeholder={'Product'}
+                onChange={handleProductChange} /> : <></>
+            }
 
           <SelectComponent 
             ariaLabel="Select dropdown - choose country"

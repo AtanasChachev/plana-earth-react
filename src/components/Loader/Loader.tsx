@@ -7,7 +7,7 @@ const Loader = (): JSX.Element => {
 
   return (
     <div className={`loader ${shShowLoader ? 'loader--visible' : ''}`}>
-       <CircularProgress size={60} className="loader__spinner" color="primary" />
+       <CircularProgress size={100} className="loader__spinner" color='inherit' />
     </div>
   );
 };

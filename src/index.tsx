@@ -1,16 +1,42 @@
-import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import { store } from './store/store';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { createTheme, MuiThemeProvider } from '@material-ui/core';
+import { MuiPickersUtilsProvider } from '@material-ui/pickers';
+import { SETTINGS } from 'config/settings';
+import MomentUtils from '@date-io/moment';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: SETTINGS.theme.palette.primary.main,
+      contrastText: SETTINGS.theme.palette.primary.contrastText,
+    },
+  },
+});
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+    },
+  },
+});
 
 ReactDOM.render(
-  <React.Fragment>
+  <QueryClientProvider client={queryClient}>
     <Provider store={store}>
-      <App />
+    <MuiPickersUtilsProvider utils={MomentUtils}>
+      <MuiThemeProvider theme={theme}>
+        <App />
+      </MuiThemeProvider>
+      </MuiPickersUtilsProvider>
     </Provider>
-  </React.Fragment>,
+  </QueryClientProvider>,
+
   document.getElementById('root'),
 );
 
