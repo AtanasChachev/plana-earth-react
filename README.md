@@ -1,3 +1,6 @@
+# NOTE:
+The current branch, `feature/axios-and-block-element-modifier` has used axios for HTTP requests and BEM for SASS / SCSS.
+
 # Project description
 
 This projects uses Open API for fetching data about the emissions for a country. There are multiple filters (country / product / start date / end date). Using Material UI for the layout and chart.js for the chart data representation.
