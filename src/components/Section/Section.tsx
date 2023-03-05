@@ -1,11 +1,9 @@
-import { Loader } from 'components/index';
 import './Section.scss';
 
 type SectionProps = {
   children: JSX.Element | JSX.Element[];
   isFullHeight?: boolean;
   headerTitle?: string;
-  shRenderLoader?: boolean;
   shAlignInlineBlockOnMobile?: boolean;
   isEmptyBlockActive: boolean;
 };
@@ -15,7 +13,6 @@ const Section = ({
   isFullHeight, 
   headerTitle, 
   shAlignInlineBlockOnMobile, 
-  shRenderLoader, 
   isEmptyBlockActive, 
 }: SectionProps): JSX.Element => {
   return (
@@ -32,10 +29,6 @@ const Section = ({
         <div className={`section__inner__content ${shAlignInlineBlockOnMobile ? 'section__inner__content--mobile-inline-blocks' : ''} ${isEmptyBlockActive ? 'section__inner__content--center' : ''}`}>
           {children}
         </div>
-
-        {
-          shRenderLoader && <Loader />
-        }
       </div>
     </div>
   );

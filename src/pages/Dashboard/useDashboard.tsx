@@ -1,45 +1,45 @@
 import { useEffect, useState } from 'react';
-import { State } from 'models/store';
-import { useDispatch, useSelector } from 'react-redux';
-
-import { ProductState, ProductStatisticsValue } from 'models/products';
+import { ActiveProductFilters,  ProductStatisticsValue } from 'models/products';
 import { capitalizeWords, formatDate } from 'utils/helpers';
-import { updateCurrentProduct, updateActiveFilters } from 'store/actions/products';
 import { Product } from 'models/products';
+import { DEFAULT_ACTIVE_FILTERS } from 'constants/products';
 import { useGetProductStatistic } from 'services/products/getProductStatistics';
 
-type Return = {
+interface UseDashboardProps {
+  products: Product[];
+}
+
+interface Return {
   isFilterActive: boolean;
   products: Product[];
   currentProduct: Product | null;
   tableData: ProductStatisticsValue[];
+  isLoading?: boolean;
   handleProductChange: (value: string) => void;
   handleCountryChange: (value: string, countryName?: string) => void;
   handleDatepickerStartDateChange: (date: string) => void;
   handleDatepickerEndDateChange: (date: string) => void;
   renderChartTitle: () => string;
   handleChartFilterButtonsChange: (intervalValue: string) => void;
-};
+}
 
-export const useDashboard = (): Return => {
-  const dispatch = useDispatch();
-  const { 
-    products,
-    currentProduct,
-    activeFilters: {
-      name, country, startDate, endDate, interval,
-    },
-  }: ProductState = useSelector((state: State) => state.productsState);
+export const useDashboard = ({ products }: UseDashboardProps): Return => {
+  const [currentProduct, updateCurrentProduct] = useState<Product | null>(null);
+  const [activeFilters, updateActiveFilters] = useState<ActiveProductFilters>({ ...DEFAULT_ACTIVE_FILTERS });
 
-  const { productsRangeData }  = useGetProductStatistic({
-    name, id: country.id, startDate, endDate, interval,
+  const { productsRangeData, isFetching: isLoading }  = useGetProductStatistic({
+    name: activeFilters.name,
+    id: activeFilters.country.id,
+    startDate: activeFilters.startDate,
+    endDate: activeFilters.endDate,
+    interval: activeFilters.interval,
   });
 
   const tableData = productsRangeData.reduce((mappedData: ProductStatisticsValue[], currentItem) => {
     mappedData.push({
       time: formatDate(currentItem.time.interval_start, 'YYYY-MM-DD'),
       ...currentItem.value,
-    });
+    }); 
 
     return mappedData;
   }, []);
@@ -47,40 +47,46 @@ export const useDashboard = (): Return => {
   const [isFilterActive, updateFilterActive] = useState<boolean>(false);
 
   useEffect(() => {
+    console.log(activeFilters);
+  }, [activeFilters]);
+
+  useEffect(() => {
     updateFilterActive(!!(productsRangeData && productsRangeData.length));
   }, [productsRangeData]);
 
-  /* Updating the current chosen product in the store so we can set min / max dates for the datepickers */
-  const updateCurrentProductCallback = (value?: string) => {
-    const option = products.find(product => product.id === value);
- 
-    if (option) dispatch(updateCurrentProduct(option));
-  };
-
-  /* Rendering the title of the chart section's holder */
-  const renderChartTitle = (): string => {
-    return isFilterActive ? `Showing data for: ${capitalizeWords(name)} in ${country.name}` : '';
-  };
+  const renderChartTitle = (): string => isFilterActive ? 
+    `Showing data for: ${capitalizeWords(activeFilters.name)} in ${activeFilters.country.name}` : '';
 
   const handleProductChange = (value: string) => {
-    dispatch(updateActiveFilters('name', value));
-    updateCurrentProductCallback(value);
+    const option = products.find(product => product.id === value);
+
+    handleUpdateActiveFilter('name', option?.name || '');
+    updateCurrentProduct(option as Product);
   };
 
-  const handleCountryChange = (value: string, countryName?: string) =>
-    dispatch(updateActiveFilters('country', { 
-      id: value, name: countryName, 
-    }));
+  const handleCountryChange = (value: string, countryName?: string) => {
+    handleUpdateActiveFilter('country', { 
+      id: value, 
+      name: countryName || '', 
+    });
+  };
 
-  const handleDatepickerStartDateChange = (date: string) => dispatch(updateActiveFilters('startDate', date));
-  const handleDatepickerEndDateChange = (date: string) => dispatch(updateActiveFilters('endDate', date));
-  const handleChartFilterButtonsChange = (intervalValue: string) => dispatch(updateActiveFilters('interval', intervalValue));
+  const handleDatepickerStartDateChange = (date: string) => handleUpdateActiveFilter('startDate', date);
+  const handleDatepickerEndDateChange = (date: string) => handleUpdateActiveFilter('endDate', date);
+  const handleChartFilterButtonsChange = (intervalValue: string) => handleUpdateActiveFilter('interval', intervalValue);
+
+  const handleUpdateActiveFilter = (prop: string, value: string | ActiveProductFilters['country']) => 
+    updateActiveFilters(object => ({
+      ...object,
+      [prop]: value,
+    }));
 
   return {
     isFilterActive,
     products,
     tableData,
     currentProduct,
+    isLoading,
     handleProductChange,
     handleCountryChange,
     handleDatepickerStartDateChange,

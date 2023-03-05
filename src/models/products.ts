@@ -7,7 +7,7 @@ export type Product = {
   product_variable: string;
 };
 
-export type ActiveProductFilters = {
+export interface ActiveProductFilters {
   name: string;
   country: {
     id: string;
@@ -16,7 +16,7 @@ export type ActiveProductFilters = {
   startDate: string;
   endDate: string;
   interval: string;
-};
+}
 
 /* Type for the store action's callback */
 export type UpdateProductsReducer = {

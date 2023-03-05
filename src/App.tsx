@@ -1,7 +1,6 @@
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import './styles/styles.scss';
 import { Dashboard } from 'pages/index';
-import { updateProducts } from 'store/actions/products';
 import { useDispatch } from 'react-redux';
 import { Toast } from 'components/index';
 import { showToast } from 'store/actions/ui';
@@ -11,8 +10,19 @@ import { useGetProductDataRange } from 'services/products/getProductDataRange';
 const App = (): JSX.Element => {
   const { products, isError } = useGetProducts();
   const productDateRanges = useGetProductDataRange(products);
+  const mappedProducts = useMemo(() => 
+    products.length && productDateRanges.length ? products.map((product, index) => {
+      const { first, last } = productDateRanges[index];
+      
+      return {
+        ...product,
+        id: product.name,
+        first,
+        last,
+      };
+    }) : [], [productDateRanges, products]);
+  
   const dispatch = useDispatch();
-
   const handleProductsFetchErrorEffect = (): void => {
     if (isError) {
       dispatch(showToast(true, 'We could not fetch the products. Please try again'));
@@ -21,29 +31,9 @@ const App = (): JSX.Element => {
 
   useEffect(handleProductsFetchErrorEffect, [isError, dispatch]);
 
-  const handleProductsRangeUpdateEffect = () => {
-    if (productDateRanges.length) {
-      const test = products.map((product, index) => {
-        const { first, last } = productDateRanges[index];
-        
-        return {
-          ...product,
-          id: product.name,
-          first,
-          last,
-        };
-      });
-
-      console.log(test);
-      dispatch(updateProducts(test));
-    }
-  };
-
-  useEffect(handleProductsRangeUpdateEffect, [dispatch, productDateRanges, products]);
-
   return (
     <>
-      <Dashboard />
+      <Dashboard products={mappedProducts} />
       <Toast />
     </>
   );

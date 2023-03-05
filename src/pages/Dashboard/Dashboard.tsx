@@ -2,22 +2,27 @@ import Grid from '@material-ui/core/Grid';
 import { Section, SelectComponent, Datepicker, Chart, ChartFilterButtons, EmptyResults } from 'components/index';
 import { COUNTRIES } from 'constants/index';
 import { useDashboard } from './useDashboard';
+import { Loader } from 'components/index';
+import { Product } from 'services/products/getProducts/types';
 
 import './Dashboard.scss';
+interface DashboardProps {
+  products: Product[];
+}
 
-const Dashboard = (): JSX.Element => {
+const Dashboard = ({ products }: DashboardProps): JSX.Element => {
   const {
     isFilterActive,
-    products,
     currentProduct,
     tableData,
+    isLoading,
     handleProductChange,
     handleCountryChange,
     handleDatepickerStartDateChange,
     handleDatepickerEndDateChange,
     renderChartTitle,
     handleChartFilterButtonsChange,
-  } = useDashboard();
+  } = useDashboard({ products });
 
   return (
     <Grid container className="dashboard"> 
@@ -67,7 +72,6 @@ const Dashboard = (): JSX.Element => {
         <Section 
           isEmptyBlockActive={!isFilterActive}
           headerTitle={renderChartTitle()}
-          shRenderLoader={true}
           isFullHeight={true}>
             {
               isFilterActive ? <>
@@ -75,6 +79,8 @@ const Dashboard = (): JSX.Element => {
                 <Chart data={tableData} />
               </> : <EmptyResults />
             }
+
+            <Loader showLoader={isLoading} />
         </Section>
       </Grid>
     </Grid>
