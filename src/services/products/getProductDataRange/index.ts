@@ -3,18 +3,16 @@ import { queryFetcher } from 'services';
 import { Product } from '../getProducts/types';
 import { ProductDataRange } from './types';
 import { GenericQueryResponse } from '../../types';
-import { useDispatch } from 'react-redux';
-import { showToast } from 'store/actions/ui';
+import { toast } from 'react-toastify';
 
 export const useGetProductDataRange = (products: Product[]): ProductDataRange[] => {
-  const dispatch = useDispatch();
   const results: GenericQueryResponse[] = useQueries({
     queries: products.map(({ name }: Product) => {
       return {
         queryKey: ['productName', name],
         queryFn: () => queryFetcher<ProductDataRange>(`${name}/data-range.json`),
         onError: () => 
-          dispatch(showToast(true, 'We could not fetch the date range for all the products. Please try again')),
+          toast.error('We could not fetch the date range for all the products. Please try again'),
         enabled: !!products.length,
       };
     }),

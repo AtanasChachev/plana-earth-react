@@ -1,11 +1,8 @@
 import { useEffect, useMemo } from 'react';
-import './styles/styles.scss';
 import { Dashboard } from 'pages/index';
-import { useDispatch } from 'react-redux';
-import { Toast } from 'components/index';
-import { showToast } from 'store/actions/ui';
 import { useGetProducts } from 'services/products/getProducts';
 import { useGetProductDataRange } from 'services/products/getProductDataRange';
+import { ToastContainer, toast } from 'react-toastify';
 
 const App = (): JSX.Element => {
   const { products, isError } = useGetProducts();
@@ -22,19 +19,26 @@ const App = (): JSX.Element => {
       };
     }) : [], [productDateRanges, products]);
   
-  const dispatch = useDispatch();
   const handleProductsFetchErrorEffect = (): void => {
     if (isError) {
-      dispatch(showToast(true, 'We could not fetch the products. Please try again'));
+      toast.error('We could not fetch the products. Please try again');
     }
   };
 
-  useEffect(handleProductsFetchErrorEffect, [isError, dispatch]);
+  useEffect(handleProductsFetchErrorEffect, [isError]);
 
   return (
     <>
       <Dashboard products={mappedProducts} />
-      <Toast />
+
+      <ToastContainer
+        position="bottom-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        theme='dark'
+      />
     </>
   );
 };

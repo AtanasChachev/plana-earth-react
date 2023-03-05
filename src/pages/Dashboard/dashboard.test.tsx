@@ -1,6 +1,4 @@
 import { render } from '@testing-library/react';
-import { Provider } from 'react-redux';
-import { store } from 'store/store';
 import { Dashboard } from './Dashboard';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import MomentUtils from '@date-io/moment';
@@ -63,13 +61,11 @@ const mockProducts = [
 const setup = () => {
   const { asFragment } = render(
     <QueryClientProvider client={queryClient}>
-      <Provider store={store}>
         <MuiPickersUtilsProvider utils={MomentUtils}>
           <MuiThemeProvider theme={theme}>
             <Dashboard products={mockProducts} />
           </MuiThemeProvider>
         </MuiPickersUtilsProvider>,
-      </Provider>
     </QueryClientProvider>,
   );
 

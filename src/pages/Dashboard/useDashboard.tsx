@@ -47,10 +47,6 @@ export const useDashboard = ({ products }: UseDashboardProps): Return => {
   const [isFilterActive, updateFilterActive] = useState<boolean>(false);
 
   useEffect(() => {
-    console.log(activeFilters);
-  }, [activeFilters]);
-
-  useEffect(() => {
     updateFilterActive(!!(productsRangeData && productsRangeData.length));
   }, [productsRangeData]);
 

@@ -1,7 +1,5 @@
 import { Chart } from './Chart';
 import { render } from '@testing-library/react';
-import { Provider } from 'react-redux';
-import { store } from 'store/store';
 
 const mockData = [
   {
@@ -32,9 +30,7 @@ const mockData = [
 
 const setup = () => {
   const { asFragment } = render(
-    <Provider store={store}>
-      <Chart data={mockData}/>
-    </Provider>,
+      <Chart data={mockData}/>,
   );
 
   return {
