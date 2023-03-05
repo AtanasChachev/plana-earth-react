@@ -6,7 +6,7 @@ import { store } from 'store/store';
 const setup = () => {
   const { asFragment } = render(
     <Provider store={store}>
-      <Loader />
+      <Loader showLoader={true} />
     </Provider>,
   );
 
