@@ -6,14 +6,14 @@ import { store } from './store/store';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { createTheme, MuiThemeProvider } from '@material-ui/core';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
-import { SETTINGS } from 'config/settings';
+import { THEME } from 'constants/index';
 import MomentUtils from '@date-io/moment';
 
 const theme = createTheme({
   palette: {
     primary: {
-      main: SETTINGS.theme.palette.primary.main,
-      contrastText: SETTINGS.theme.palette.primary.contrastText,
+      main: THEME.palette.primary.main,
+      contrastText: THEME.palette.primary.contrastText,
     },
   },
 });

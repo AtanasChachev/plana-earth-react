@@ -1,20 +1,18 @@
-import { useEffect, useCallback, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { State } from 'models/store';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { ProductState } from 'models/products';
-import { ChartDataHTTPResponse } from 'models/chart';
-import { productsService } from 'services/products-service';
-import { updateChartData } from 'store/actions/chart';
-import { capitalizeWords } from 'utils/helpers';
-import { showLoader, showToast } from 'store/actions/ui';
+import { ProductState, ProductStatisticsValue } from 'models/products';
+import { capitalizeWords, formatDate } from 'utils/helpers';
 import { updateCurrentProduct, updateActiveFilters } from 'store/actions/products';
 import { Product } from 'models/products';
+import { useGetProductStatistic } from 'services/products/getProductStatistics';
 
 type Return = {
   isFilterActive: boolean;
   products: Product[];
   currentProduct: Product | null;
+  tableData: ProductStatisticsValue[];
   handleProductChange: (value: string) => void;
   handleCountryChange: (value: string, countryName?: string) => void;
   handleDatepickerStartDateChange: (date: string) => void;
@@ -33,30 +31,27 @@ export const useDashboard = (): Return => {
     },
   }: ProductState = useSelector((state: State) => state.productsState);
 
+  const { productsRangeData }  = useGetProductStatistic({
+    name, id: country.id, startDate, endDate, interval,
+  });
+
+  const tableData = productsRangeData.reduce((mappedData: ProductStatisticsValue[], currentItem) => {
+    mappedData.push({
+      time: formatDate(currentItem.time.interval_start, 'YYYY-MM-DD'),
+      ...currentItem.value,
+    });
+
+    return mappedData;
+  }, []);
+
   const [isFilterActive, updateFilterActive] = useState<boolean>(false);
 
-  /* Fetching the product's average */ 
-  const fetchProductStatistics = useCallback(async () => {
-    dispatch(showLoader(true));
-
-    try { 
-      const productStatisticsData: ChartDataHTTPResponse = 
-        await productsService.getProductStatistics({ name, country, startDate, endDate, interval }) ;
-
-      if (productStatisticsData.data && productStatisticsData.data.length) {
-        dispatch(updateChartData(productStatisticsData.data));
-      } 
-
-      updateFilterActive(!!(productStatisticsData.data && productStatisticsData.data.length));
-    } catch (e) { 
-      dispatch(showToast(true, 'We could not fetch the products. Please try again'));
-    } finally {
-      dispatch(showLoader(false));
-    }
-  }, [country, endDate, interval, name, startDate, dispatch]);
+  useEffect(() => {
+    updateFilterActive(!!(productsRangeData && productsRangeData.length));
+  }, [productsRangeData]);
 
   /* Updating the current chosen product in the store so we can set min / max dates for the datepickers */
-  const updateCurrentProductCallback = (value: string | unknown) => {
+  const updateCurrentProductCallback = (value?: string) => {
     const option = products.find(product => product.id === value);
  
     if (option) dispatch(updateCurrentProduct(option));
@@ -81,18 +76,10 @@ export const useDashboard = (): Return => {
   const handleDatepickerEndDateChange = (date: string) => dispatch(updateActiveFilters('endDate', date));
   const handleChartFilterButtonsChange = (intervalValue: string) => dispatch(updateActiveFilters('interval', intervalValue));
 
-  useEffect(() => {
-    if (name.length &&
-        country.id.length &&
-        startDate.length &&
-        endDate.length) {
-      void fetchProductStatistics();
-    }
-  }, [interval, name, country, startDate, endDate, fetchProductStatistics ]);
-
   return {
     isFilterActive,
     products,
+    tableData,
     currentProduct,
     handleProductChange,
     handleCountryChange,

@@ -1,6 +1,6 @@
 import { Snackbar }  from '@material-ui/core';
 import Slide, { SlideProps } from '@material-ui/core/Slide';
-import { SETTINGS } from 'config/settings';
+import { TOAST_DURATION } from 'constants/index';
 import { useToast } from './useToast';
 
 type TransitionProps = Omit<SlideProps, 'direction'>;
@@ -18,7 +18,7 @@ const Toast = (): JSX.Element => {
     <Snackbar
       open={shShowToast}
       onClose={handleOnClose}
-      autoHideDuration={SETTINGS.toastAutoDuration}
+      autoHideDuration={TOAST_DURATION}
       TransitionComponent={TransitionUp}
       message={message}
     />

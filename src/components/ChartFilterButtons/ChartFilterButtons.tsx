@@ -1,6 +1,6 @@
 import { Button } from '@material-ui/core';
 import { capitalizeWords } from 'utils/helpers';
-import { SETTINGS } from 'config/settings';
+import { CHART_SETTINGS  } from 'constants/index';
 import { useChartFilterButtons } from './useChartFilterButtons';
 
 import './ChartFilterButtons.scss';
@@ -15,7 +15,7 @@ const ChartFilterButtons = ({ onClick }: ChartFilterButtonsProps): JSX.Element =
   return (
     <div className="chart-buttons">
       {
-        [...SETTINGS.chartFilterButtons].map((interval: string, index: number) => 
+        CHART_SETTINGS.chartFilterButtons.map((interval: string, index: number) => 
           <Button
             data-testid="chart-filter-button"
             aria-label={`Chart filter button - click to filter the chart by ${interval}`}

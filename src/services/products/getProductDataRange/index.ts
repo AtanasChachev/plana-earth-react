@@ -13,9 +13,9 @@ export const useGetProductDataRange = (products: Product[]): ProductDataRange[] 
       return {
         queryKey: ['productName', name],
         queryFn: () => queryFetcher<ProductDataRange>(`${name}/data-range.json`),
-        enabled: !!products.length,
         onError: () => 
           dispatch(showToast(true, 'We could not fetch the date range for all the products. Please try again')),
+        enabled: !!products.length,
       };
     }),
   });

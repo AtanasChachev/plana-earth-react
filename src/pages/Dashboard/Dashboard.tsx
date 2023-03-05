@@ -1,6 +1,6 @@
 import Grid from '@material-ui/core/Grid';
 import { Section, SelectComponent, Datepicker, Chart, ChartFilterButtons, EmptyResults } from 'components/index';
-import { SETTINGS } from 'config/settings';
+import { COUNTRIES } from 'constants/index';
 import { useDashboard } from './useDashboard';
 
 import './Dashboard.scss';
@@ -10,6 +10,7 @@ const Dashboard = (): JSX.Element => {
     isFilterActive,
     products,
     currentProduct,
+    tableData,
     handleProductChange,
     handleCountryChange,
     handleDatepickerStartDateChange,
@@ -38,7 +39,7 @@ const Dashboard = (): JSX.Element => {
           <SelectComponent 
             ariaLabel="Select dropdown - choose country"
             className={`dashboard__form__field dashboard__form__field--animated ${currentProduct ? 'dashboard__form__field--animated-visible' : ''}`}
-            options={[...SETTINGS.countries]}
+            options={COUNTRIES}
             placeholder={'Country'}
             onChange={handleCountryChange} />
 
@@ -71,7 +72,7 @@ const Dashboard = (): JSX.Element => {
             {
               isFilterActive ? <>
                 <ChartFilterButtons onClick={handleChartFilterButtonsChange} />
-                <Chart />
+                <Chart data={tableData} />
               </> : <EmptyResults />
             }
         </Section>

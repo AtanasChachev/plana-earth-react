@@ -1,27 +1,26 @@
-import { useChart } from './useChart';
 import { ResponsiveContainer, LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts';
-import { SETTINGS } from 'config/settings';
+import { CHART_SETTINGS, THEME } from 'constants/index';
 import './Chart.scss';
+import { ProductStatisticsValue } from 'models/products';
 
-const Chart = (): JSX.Element => {
-  const { data } = useChart();
+interface ChartProps {
+  data: ProductStatisticsValue[];
+}
 
-  return (
+const Chart = ({ data }: ChartProps): JSX.Element => 
     <div className="holder">
       <ResponsiveContainer width="100%" height={400}>
         <LineChart data={data}>
-          <Line type="monotone" dataKey="average" stroke={SETTINGS.chartColors.average}/>
-          <Line type="monotone" dataKey="min" stroke={SETTINGS.chartColors.min} />
-          <Line type="monotone" dataKey="standard deviation" stroke={SETTINGS.chartColors.standarddeviation} />
+          <Line type="monotone" dataKey="average" stroke={CHART_SETTINGS.chartColors.average}/>
+          <Line type="monotone" dataKey="min" stroke={CHART_SETTINGS.chartColors.min} />
+          <Line type="monotone" dataKey="standard deviation" stroke={CHART_SETTINGS.chartColors.standarddeviation} />
 
-          <CartesianGrid stroke={SETTINGS.theme.palette.primary.main} strokeDasharray="5 5" />
+          <CartesianGrid stroke={THEME.palette.primary.main} strokeDasharray="5 5" />
           <XAxis dataKey="time" />
           <YAxis />
           <Tooltip />
         </LineChart>
       </ResponsiveContainer>
-    </div>
-  );
-};
+    </div>;
 
 export { Chart };

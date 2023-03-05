@@ -5,13 +5,13 @@ import { Dashboard } from './Dashboard';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import MomentUtils from '@date-io/moment';
 import { MuiThemeProvider, createTheme } from '@material-ui/core/styles';
-import { SETTINGS } from 'config/settings';
+import { THEME } from 'constants/index';
 
 const theme = createTheme({
   palette: {
     primary: {
-      main: SETTINGS.theme.palette.primary.main,
-      contrastText: SETTINGS.theme.palette.primary.contrastText,
+      main: THEME.palette.primary.main,
+      contrastText: THEME.palette.primary.contrastText,
     },
   },
 });
