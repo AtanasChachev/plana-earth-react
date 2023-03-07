@@ -4,6 +4,7 @@ import { capitalizeWords, formatDate } from 'utils/helpers';
 import { Product } from 'models/products';
 import { DEFAULT_ACTIVE_FILTERS } from 'constants/products';
 import { useGetProductStatistic } from 'services/products/getProductStatistics';
+import { getObjectValues } from 'utils/helpers';
 
 interface UseDashboardProps {
   products: Product[];
@@ -46,9 +47,16 @@ export const useDashboard = ({ products }: UseDashboardProps): Return => {
 
   const [isFilterActive, updateFilterActive] = useState<boolean>(false);
 
+  const handleAllFiltersUpdateEffect = () => {
+    const allFiltersActive = getObjectValues(activeFilters).every(obj => obj.length);
+    updateFilterActive(allFiltersActive);
+  };
+
+  useEffect(handleAllFiltersUpdateEffect, [activeFilters]);
+
   useEffect(() => {
-    updateFilterActive(!!(productsRangeData && productsRangeData.length));
-  }, [productsRangeData]);
+    console.log(activeFilters);
+  }, [activeFilters]);
 
   const renderChartTitle = (): string => isFilterActive ? 
     `Showing data for: ${capitalizeWords(activeFilters.name)} in ${activeFilters.country.name}` : '';

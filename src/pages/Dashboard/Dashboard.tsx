@@ -52,8 +52,8 @@ const Dashboard = ({ products }: DashboardProps): JSX.Element => {
             ariaLabel="Datepicker - choose the start date for the filter"
             className={`dashboard__form__field dashboard__form__field--animated ${currentProduct ? 'dashboard__form__field--animated-visible' : ''}`}
             label='Start Date'
-            minDate={currentProduct ? currentProduct.first : ''}
-            maxDate={currentProduct ? currentProduct.last : ''}
+            minDate={currentProduct?.first ?? ''}
+            maxDate={currentProduct?.last ?? ''}
             onChange={handleDatepickerStartDateChange}
           />
 
