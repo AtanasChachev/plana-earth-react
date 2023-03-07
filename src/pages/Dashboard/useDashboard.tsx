@@ -54,10 +54,6 @@ export const useDashboard = ({ products }: UseDashboardProps): Return => {
 
   useEffect(handleAllFiltersUpdateEffect, [activeFilters]);
 
-  useEffect(() => {
-    console.log(activeFilters);
-  }, [activeFilters]);
-
   const renderChartTitle = (): string => isFilterActive ? 
     `Showing data for: ${capitalizeWords(activeFilters.name)} in ${activeFilters.country.name}` : '';
 
