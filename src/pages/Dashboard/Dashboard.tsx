@@ -1,28 +1,22 @@
 import Grid from '@material-ui/core/Grid';
 import { Section, SelectComponent, Datepicker, Chart, ChartFilterButtons, EmptyResults } from 'components/index';
-import { COUNTRIES } from 'constants/index';
+import { SETTINGS } from 'config/settings';
 import { useDashboard } from './useDashboard';
-import { Loader } from 'components/index';
-import { Product } from 'services/products/getProducts/types';
 
 import './Dashboard.scss';
-interface DashboardProps {
-  products: Product[];
-}
 
-const Dashboard = ({ products }: DashboardProps): JSX.Element => {
+const Dashboard = (): JSX.Element => {
   const {
     isFilterActive,
+    products,
     currentProduct,
-    tableData,
-    isLoading,
     handleProductChange,
     handleCountryChange,
     handleDatepickerStartDateChange,
     handleDatepickerEndDateChange,
     renderChartTitle,
     handleChartFilterButtonsChange,
-  } = useDashboard({ products });
+  } = useDashboard();
 
   return (
     <Grid container className="dashboard"> 
@@ -32,19 +26,17 @@ const Dashboard = ({ products }: DashboardProps): JSX.Element => {
           isFullHeight={true}
           shAlignInlineBlockOnMobile={true}
           headerTitle='Product filters:'>
-            {
-              !!products.length ? <SelectComponent 
-                ariaLabel="Select dropdown - choose product"
-                className="dashboard__form__field"
-                options={products}
-                placeholder={'Product'}
-                onChange={handleProductChange} /> : <></>
-            }
+          <SelectComponent 
+            ariaLabel="Select dropdown - choose product"
+            className="dashboard__form__field"
+            options={products}
+            placeholder={'Product'}
+            onChange={handleProductChange} /> 
 
           <SelectComponent 
             ariaLabel="Select dropdown - choose country"
             className={`dashboard__form__field dashboard__form__field--animated ${currentProduct ? 'dashboard__form__field--animated-visible' : ''}`}
-            options={COUNTRIES}
+            options={[...SETTINGS.countries]}
             placeholder={'Country'}
             onChange={handleCountryChange} />
 
@@ -52,8 +44,8 @@ const Dashboard = ({ products }: DashboardProps): JSX.Element => {
             ariaLabel="Datepicker - choose the start date for the filter"
             className={`dashboard__form__field dashboard__form__field--animated ${currentProduct ? 'dashboard__form__field--animated-visible' : ''}`}
             label='Start Date'
-            minDate={currentProduct?.first ?? ''}
-            maxDate={currentProduct?.last ?? ''}
+            minDate={currentProduct ? currentProduct.first : ''}
+            maxDate={currentProduct ? currentProduct.last : ''}
             onChange={handleDatepickerStartDateChange}
           />
 
@@ -72,15 +64,14 @@ const Dashboard = ({ products }: DashboardProps): JSX.Element => {
         <Section 
           isEmptyBlockActive={!isFilterActive}
           headerTitle={renderChartTitle()}
+          shRenderLoader={true}
           isFullHeight={true}>
             {
               isFilterActive ? <>
                 <ChartFilterButtons onClick={handleChartFilterButtonsChange} />
-                <Chart data={tableData} />
+                <Chart />
               </> : <EmptyResults />
             }
-
-            <Loader showLoader={isLoading} />
         </Section>
       </Grid>
     </Grid>

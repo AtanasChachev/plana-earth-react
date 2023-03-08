@@ -3,14 +3,14 @@ import { KeyboardDatePicker } from '@material-ui/pickers';
 import { useDatepicker } from './useDatepicker';
 import './Datepicker.scss';
 
-export interface DatepickerProps {
+export type DatepickerProps = {
   label: string;
   minDate?: Date | string;
   maxDate?: Date | string;
   className?: string;
   ariaLabel?: string;
   onChange(date: string): void;
-}
+};
 
 const Datepicker = ({ label, minDate, maxDate, className, ariaLabel, onChange }: DatepickerProps): JSX.Element => {
   const {

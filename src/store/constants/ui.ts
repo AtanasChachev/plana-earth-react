@@ -1,0 +1,2 @@
+export const UPDATE_LOADER_STATE = Symbol('UPDATE_LOADER_STATE');
+export const UPDATE_TOAST_STATE = Symbol('UPDATE_TOAST_STATE');

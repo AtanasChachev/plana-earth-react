@@ -1,22 +1,20 @@
 import { render } from '@testing-library/react';
-import { Loader } from './Loader';
+import { Toast } from './Toast';
 import { Provider } from 'react-redux';
 import { store } from 'store/store';
 
 const setup = () => {
   const { asFragment } = render(
     <Provider store={store}>
-      <Loader />
+      <Toast />
     </Provider>,
   );
 
-  return {
-    asFragment,
-  };
+  return { asFragment };
 };
 
-describe('<Loader />', () => {
-  test('<Loader /> renders correctly', () => {
+describe('<Toast />', () => {
+  test('<Toast /> should render correctly', () => {
     const { asFragment } = setup();
 
     expect(asFragment()).toMatchSnapshot();

@@ -1,0 +1,1 @@
+export const UPDATE_CHART_DATA = Symbol('UPDATE_CHART_DATA');
