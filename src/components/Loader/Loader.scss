@@ -12,12 +12,14 @@
   border-radius: 4px;
   visibility: hidden;
   opacity: 0;
-  transform: scale(0);
-  transition: transform .4s, opacity .4s, visibility .4s;
+  transition:  opacity .4s, visibility .4s;
 
   &--visible {
     visibility: visible;
     opacity: 1;
-    transform: scale(1);
+  }
+
+  &__spinner {
+    color: var(--clr-black);
   }
 }
