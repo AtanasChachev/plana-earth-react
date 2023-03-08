@@ -11,6 +11,5 @@ export enum HTTPMutationMethods {
   PATCH = 'PATCH',
   DELETE = 'DELETE',
 }
-// export type HTTPMutationMethods = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
 
 export type MutationFunction<T> = UseMutateFunction<Response, unknown, T, unknown>;

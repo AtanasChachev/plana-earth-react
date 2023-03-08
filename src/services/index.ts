@@ -14,12 +14,6 @@ export const queryMutation = (url: string, method: HTTPMutationMethods, data?: u
     },
   }).then(async (response: Response) => {
     if (!response.ok) {
-      /**
-       * TODO - Check the return error types from the API.
-       */
-      // const requestResponse: APIError = await response.json();
-      // throw requestResponse.errors || requestResponse.message;
-
       throw new Error('Ooops, something went wrong');
     } else {
       if (response.status === 204) return { success: true };

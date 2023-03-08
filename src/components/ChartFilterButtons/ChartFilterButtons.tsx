@@ -5,9 +5,9 @@ import { useChartFilterButtons } from './useChartFilterButtons';
 
 import './ChartFilterButtons.scss';
 
-export type ChartFilterButtonsProps = {
+export interface ChartFilterButtonsProps {
   onClick(interval: string): void;
-};
+}
 
 const ChartFilterButtons = ({ onClick }: ChartFilterButtonsProps): JSX.Element => {
   const { activeIndex, handleFilterButton } = useChartFilterButtons({ onClick });
