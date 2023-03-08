@@ -5,10 +5,10 @@ import { DatepickerProps } from './Datepicker';
 
 type UseDatepickerProps = Pick<DatepickerProps, 'onChange'>;
 
-interface Return {
+type Return = {
   selectedDate: Date | Moment | null;
   handleDateChange: (date: Date | Moment | null) => void;
-}
+};
 
 export const useDatepicker = ({ onChange }: UseDatepickerProps): Return => {
   const [selectedDate, setSelectedDate] = useState<Date | Moment | null>(null);

@@ -1,23 +1,53 @@
-export interface Product {
+/* Product type */
+export type Product = {
   id?: string;
   first?: string;
   last?: string;
   name: string;
   product_variable: string;
-}
+};
 
-export interface ActiveProductFilters {
+export type ActiveProductFilters = {
   name: string;
-  country: Country;
+  country: {
+    id: string;
+    name: string;
+  };
   startDate: string;
   endDate: string;
   interval: string;
-}
+};
 
-export interface ProductDateRange {
+/* Type for the store action's callback */
+export type UpdateProductsReducer = {
+  type: symbol;
+  payload: Product[];
+};
+
+export type UpdateCurrentProductReducer = {
+  type: symbol;
+  payload: Product;
+};
+
+export type UpdateActiveFiltersReducer = {
+  type: symbol;
+  payload: {
+    propName: string;
+    propValue: string | { id: string; name?: string; };
+  };
+};
+
+/* Type for the products reducer in the store. */
+export type ProductState = {
+  currentProduct: Product | null;
+  products: Product[];
+  activeFilters: ActiveProductFilters;
+};
+
+export type ProductDateRange = {
   first: string;
   last: string;
-}
+};
 
 export type ProductAverage = {
   average: number;
@@ -25,29 +55,37 @@ export type ProductAverage = {
   start: string;
 };
 
-export interface ProductStatistics {
+export type ProductStatistics  = {
   time: {
     interval_start: string;
     max: string;
     min: string;
   },
   value: TypeObjectKeys & ProductStatisticsValue;
-}
+};
 
 type TypeObjectKeys = {
   [key: string]: number;
 };
 
-export interface ProductStatisticsValue {
+export type ProductStatisticsValue = {
   average: number;
   count: number;
   max: number;
   min: number;
   standarddeviation: number;
   time?: string;
-}
+};
 
-export interface Country {
-  id: string;
-  name: string;
-}
+/* Type for the HTTP responses for the products */
+export type ProductsHTTPResponse = {
+  data: Product[];
+};
+
+export type ProductsDateRangeHTTPResnpose = {
+  data: ProductDateRange;
+};
+
+export type ProductsAverageHTTPReponse = {
+  data: ProductAverage[];
+};

@@ -1,12 +1,12 @@
 import { Product } from 'models/products';
-import { Country } from 'models/products';
+import { Countries } from 'models/settings';
 import { InputLabel, MenuItem, FormControl, Select } from '@material-ui/core';
 import './Select.scss';
 import { useSelect } from './useSelect';
 
 export type SelectProps = {
   placeholder: string;
-  options: Product[] | Country[];
+  options: Product[] | Countries[];
   className?: string;
   ariaLabel?: string;
   onChange(value: string | unknown, name?: string): void;
@@ -33,7 +33,7 @@ const SelectComponent = ({ options, placeholder, className, ariaLabel, onChange 
               value={value}
               onChange={handleSelectChange}>
               {
-                options.map((option: Product | Country, index: number) => 
+                options.map((option: Product | Countries, index: number) => 
                   <MenuItem className="select__option" key={index} value={option.id}>{option.name}</MenuItem>)
               }
             </Select>

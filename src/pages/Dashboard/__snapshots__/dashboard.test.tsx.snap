@@ -26,49 +26,7 @@ exports[`<Dashboard /> <Dashboard /> should render correctly 1`] = `
           <div
             class="section__inner__content section__inner__content--mobile-inline-blocks "
           >
-            <div
-              class="MuiFormControl-root select dashboard__form__field"
-            >
-              <label
-                class="MuiFormLabel-root MuiInputLabel-root select__label MuiInputLabel-formControl MuiInputLabel-animated"
-                data-shrink="false"
-              >
-                Product
-              </label>
-              <div
-                aria-label="Select dropdown - choose product"
-                aria-required="true"
-                class="MuiInputBase-root MuiInput-root MuiInput-underline select__form MuiInputBase-formControl MuiInput-formControl"
-                data-testid="select"
-              >
-                <div
-                  aria-haspopup="listbox"
-                  class="MuiSelect-root MuiSelect-select MuiSelect-selectMenu MuiInputBase-input MuiInput-input"
-                  role="button"
-                  tabindex="0"
-                >
-                  <span>
-                    ​
-                  </span>
-                </div>
-                <input
-                  aria-hidden="true"
-                  class="MuiSelect-nativeInput"
-                  tabindex="-1"
-                  value=""
-                />
-                <svg
-                  aria-hidden="true"
-                  class="MuiSvgIcon-root MuiSelect-icon"
-                  focusable="false"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M7 10l5 5 5-5z"
-                  />
-                </svg>
-              </div>
-            </div>
+            0
             <div
               class="MuiFormControl-root select dashboard__form__field dashboard__form__field--animated "
             >
@@ -255,28 +213,28 @@ exports[`<Dashboard /> <Dashboard /> should render correctly 1`] = `
                 We were not able to find results by the given criteria. Please try to change the filters in the left column.
               </p>
             </div>
+          </div>
+          <div
+            class="loader "
+          >
             <div
-              class="loader "
+              class="MuiCircularProgress-root loader__spinner MuiCircularProgress-colorPrimary MuiCircularProgress-indeterminate"
+              role="progressbar"
+              style="width: 60px; height: 60px;"
             >
-              <div
-                class="MuiCircularProgress-root loader__spinner MuiCircularProgress-indeterminate"
-                role="progressbar"
-                style="width: 100px; height: 100px;"
+              <svg
+                class="MuiCircularProgress-svg"
+                viewBox="22 22 44 44"
               >
-                <svg
-                  class="MuiCircularProgress-svg"
-                  viewBox="22 22 44 44"
-                >
-                  <circle
-                    class="MuiCircularProgress-circle MuiCircularProgress-circleIndeterminate"
-                    cx="44"
-                    cy="44"
-                    fill="none"
-                    r="20.2"
-                    stroke-width="3.6"
-                  />
-                </svg>
-              </div>
+                <circle
+                  class="MuiCircularProgress-circle MuiCircularProgress-circleIndeterminate"
+                  cx="44"
+                  cy="44"
+                  fill="none"
+                  r="20.2"
+                  stroke-width="3.6"
+                />
+              </svg>
             </div>
           </div>
         </div>

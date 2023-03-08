@@ -3,14 +3,14 @@ import { screen, render, fireEvent } from '@testing-library/react';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import MomentUtils from '@date-io/moment';
 import { MuiThemeProvider, createTheme } from '@material-ui/core/styles';
-import { THEME } from 'constants/index';
+import { SETTINGS } from 'config/settings';
 import { waitForElementToBeRemoved } from '@testing-library/dom';
 
 const theme = createTheme({
   palette: {
     primary: {
-      main: THEME.palette.primary.main,
-      contrastText: THEME.palette.primary.contrastText,
+      main: SETTINGS.theme.palette.primary.main,
+      contrastText: SETTINGS.theme.palette.primary.contrastText,
     },
   },
 });
