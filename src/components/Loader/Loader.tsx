@@ -1,15 +1,13 @@
 import CircularProgress from '@material-ui/core/CircularProgress';
-import { useLoader } from './useLoader';
 import './Loader.scss';
 
-const Loader = (): JSX.Element => {
-  const { shShowLoader } = useLoader();
+interface LoaderProps {
+  showLoader?: boolean;
+}
 
-  return (
-    <div className={`loader ${shShowLoader ? 'loader--visible' : ''}`}>
-       <CircularProgress size={60} className="loader__spinner" color="primary" />
-    </div>
-  );
-};
+const Loader = ({ showLoader }: LoaderProps): JSX.Element => 
+  <div className={`loader ${showLoader ? 'loader--visible' : ''}`}>
+    <CircularProgress size={100} className="loader__spinner" color='inherit' />
+  </div>;
 
 export { Loader };

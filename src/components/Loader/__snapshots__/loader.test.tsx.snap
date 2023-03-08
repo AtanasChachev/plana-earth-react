@@ -3,12 +3,12 @@
 exports[`<Loader /> <Loader /> renders correctly 1`] = `
 <DocumentFragment>
   <div
-    class="loader "
+    class="loader loader--visible"
   >
     <div
-      class="MuiCircularProgress-root loader__spinner MuiCircularProgress-colorPrimary MuiCircularProgress-indeterminate"
+      class="MuiCircularProgress-root loader__spinner MuiCircularProgress-indeterminate"
       role="progressbar"
-      style="width: 60px; height: 60px;"
+      style="width: 100px; height: 100px;"
     >
       <svg
         class="MuiCircularProgress-svg"
