@@ -2,7 +2,10 @@
 
 This projects uses Open API for fetching data about the emissions for a country. There are multiple filters (country / product / start date / end date). Using Material UI for the layout and chart.js for the chart data representation.
 
-**IMPORTANT**: Some of the filters requires a long fetching time from the API json so working example would be 
+**IMPORTANT**: 
+- Some of the filters requires a long fetching time from the API json so working example would be.
+- In order to install the scripts, please use `v14.20.0` of node
+- The current branch includes implementation of `react-query`. The previous version was with Axios and React-redux, you can checkout the previous implementation in the `feature/axios-and-block-element-modifier` branch.
 
 ```
 Product - Carbonmonoxide
