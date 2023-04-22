@@ -1,12 +1,8 @@
-import { ProductStatistics } from 'models/products';
+import { ProductStatistics, ActiveProductFilters } from 'models/products';
 import { GenericQueryResponse } from 'services/types';
 
-export interface UseGetProductStatisticParams {
-  name: string;
+export interface UseGetProductStatisticParams extends Omit<ActiveProductFilters, 'country'>{
   id: string;
-  startDate: string;
-  endDate: string;
-  interval: string;
 }
 
 export interface UseGetProductStatisticReturn extends GenericQueryResponse {

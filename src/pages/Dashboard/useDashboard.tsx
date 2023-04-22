@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
-import { ActiveProductFilters,  ProductStatisticsValue } from 'models/products';
+import { ActiveProductFilters,  ProductStatisticsValue, Product } from 'models/products';
 import { capitalizeWords, formatDate } from 'utils/helpers';
-import { Product } from 'models/products';
 import { DEFAULT_ACTIVE_FILTERS } from 'constants/products';
 import { useGetProductStatistic } from 'services/products/getProductStatistics';
 import { getObjectValues } from 'utils/helpers';

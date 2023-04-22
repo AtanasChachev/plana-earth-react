@@ -1,6 +1,5 @@
 import { useState, ChangeEvent } from 'react';
-import { Product } from 'models/products';
-import { Country } from 'models/products';
+import { Product, Country } from 'models/products';
 import { Return, UseSelectProps } from './types';
 
 export const useSelect = ({ onChange, options }: UseSelectProps): Return => {

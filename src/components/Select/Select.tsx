@@ -1,5 +1,4 @@
-import { Product } from 'models/products';
-import { Country } from 'models/products';
+import { Product, Country } from 'models/products';
 import { InputLabel, MenuItem, FormControl, Select } from '@material-ui/core';
 import { useSelect } from './useSelect';
 import { SelectProps } from './types';

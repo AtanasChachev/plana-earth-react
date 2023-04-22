@@ -1,5 +1,4 @@
-import { Product } from 'models/products';
-import { ProductStatisticsValue } from 'models/products';
+import { Product, ProductStatisticsValue } from 'models/products';
 
 export interface DashboardProps {
   products: Product[];

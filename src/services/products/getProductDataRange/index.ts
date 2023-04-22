@@ -1,6 +1,6 @@
 import { useQueries } from '@tanstack/react-query';
 import { queryFetcher } from 'services';
-import { Product } from '../getProducts/types';
+import { Product } from 'models/products';
 import { ProductDataRange } from './types';
 import { GenericQueryResponse } from '../../types';
 import { toast } from 'react-toastify';

@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { queryFetcher } from 'services';
 import { GetProductsReturn } from './types';
-import { Product } from './types';
+import { Product } from 'models/products';
 
 const getProductsEndpoint = 'products.json';
 

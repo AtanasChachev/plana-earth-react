@@ -2,6 +2,8 @@
 
 This projects uses Open API for fetching data about the emissions for a country. There are multiple filters (country / product / start date / end date). Using Material UI for the layout and chart.js for the chart data representation.
 
+**PLEASE TAKE INTO CONSIDERATION THAT SOMETIMES THE OPEN API IS SLOW AND IT MAY TAKE LONGER TO LOAD**
+
 **IMPORTANT**: 
 - Some of the filters requires a long fetching time from the API json so working example would be.
 - In order to install the scripts, please use `v14.20.0` of node
