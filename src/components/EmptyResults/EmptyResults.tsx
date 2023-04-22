@@ -11,4 +11,4 @@ const EmptyResults = (): JSX.Element =>
   </div>;
 
 
-export { EmptyResults };
+export default EmptyResults;

@@ -1,10 +1,6 @@
 import { ResponsiveContainer, LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts';
 import { CHART_SETTINGS, THEME } from 'constants/index';
-import { ProductStatisticsValue } from 'models/products';
-
-interface ChartProps {
-  data: ProductStatisticsValue[];
-}
+import { ChartProps } from './types';
 
 const Chart = ({ data }: ChartProps): JSX.Element => 
   <div className="holder">
@@ -22,4 +18,4 @@ const Chart = ({ data }: ChartProps): JSX.Element =>
     </ResponsiveContainer>
   </div>;
 
-export { Chart };
+export default Chart;

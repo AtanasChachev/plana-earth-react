@@ -2,28 +2,28 @@ import { ProductAverage, ProductStatisticsValue } from './products';
 
 export type ChartData = ProductAverage[];
 
-export type ChartDataHTTPResponse = {
+export interface ChartDataHTTPResponse {
   data: ChartData[];
-};
+}
 
-export type ChartReducerData = {
+export interface ChartReducerData {
   type: symbol;
   payload: ChartData[];
-};
+}
 
-export type ChartState = {
+export interface ChartState {
   data: ProductStatisticsValue[];
-};
+}
 
-export type ChartStateData = {
+export interface ChartStateData {
   labels: string[];
   datasets: ChartDataset[];
-};
+}
 
-export type ChartDataset = {
+export interface ChartDataset {
   label: string;
   data: number[];
   fill: boolean;
   backgroundColor: string;
   borderColor: string;
-};
+}

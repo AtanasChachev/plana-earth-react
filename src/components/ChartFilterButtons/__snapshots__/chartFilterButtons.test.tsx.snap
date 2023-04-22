@@ -7,7 +7,7 @@ exports[`<ChartFilterButtons /> <ChartFilterButtons /> should render correctly 1
   >
     <button
       aria-label="Chart filter button - click to filter the chart by day"
-      class="MuiButtonBase-root MuiButton-root MuiButton-text chart-buttons__button  MuiButton-textPrimary"
+      class="MuiButtonBase-root MuiButton-root MuiButton-text chart-buttons__button chart-buttons__button--active MuiButton-textPrimary"
       data-testid="chart-filter-button"
       tabindex="0"
       type="button"

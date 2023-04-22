@@ -1,14 +1,7 @@
 import { useState, ChangeEvent } from 'react';
-import { SelectProps } from './Select';
 import { Product } from 'models/products';
 import { Country } from 'models/products';
-
-interface Return {
-  value: string | unknown;
-  handleSelectChange: (event: ChangeEvent<{ value: unknown }>) => void;
-}
-
-type UseSelectProps = Pick<SelectProps, 'onChange' | 'options'>;
+import { Return, UseSelectProps } from './types';
 
 export const useSelect = ({ onChange, options }: UseSelectProps): Return => {
   const [value, updateValue] = useState<string | unknown>('');

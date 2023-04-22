@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react';
-import { EmptyResults } from './EmptyResults';
+import EmptyResults from './EmptyResults';
 
 const setup = () => {
   const { asFragment } = render(<EmptyResults />);

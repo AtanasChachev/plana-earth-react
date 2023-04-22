@@ -7,10 +7,17 @@ This projects uses Open API for fetching data about the emissions for a country.
 - In order to install the scripts, please use `v14.20.0` of node
 - The current branch includes implementation of `react-query`. The previous version was with Axios and React-redux, you can checkout the previous implementation in the `feature/axios-and-block-element-modifier` branch.
 
+**HOW TO RUN THE PROJECT**:
+
+- First you have to create your own `.env` file in the root of the project, copy the values from `.env.example` and put it in the `.env`.
+- Run `yarn` to install the dependencies.
+- Run `yarn start` to start up the project.
+- Afterwards, you can select any type of data, here's an example one:
+
 ```
 Product - Carbonmonoxide
 Country - Germany
-Start Date - any date of 2021
+Start Date - Any date of 2021
 End Date - Any date after start date in range period of few months
 ```
 

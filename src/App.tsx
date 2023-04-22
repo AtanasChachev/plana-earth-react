@@ -1,5 +1,5 @@
 import { useEffect, useMemo } from 'react';
-import { Dashboard } from 'pages/index';
+import Dashboard from 'pages/Dashboard';
 import { useGetProducts } from 'services/products/getProducts';
 import { useGetProductDataRange } from 'services/products/getProductDataRange';
 import { ToastContainer, toast } from 'react-toastify';

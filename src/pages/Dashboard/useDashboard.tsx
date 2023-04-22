@@ -5,24 +5,7 @@ import { Product } from 'models/products';
 import { DEFAULT_ACTIVE_FILTERS } from 'constants/products';
 import { useGetProductStatistic } from 'services/products/getProductStatistics';
 import { getObjectValues } from 'utils/helpers';
-
-interface UseDashboardProps {
-  products: Product[];
-}
-
-interface Return {
-  isFilterActive: boolean;
-  products: Product[];
-  currentProduct: Product | null;
-  tableData: ProductStatisticsValue[];
-  isLoading?: boolean;
-  handleProductChange: (value: string) => void;
-  handleCountryChange: (value: string, countryName?: string) => void;
-  handleDatepickerStartDateChange: (date: string) => void;
-  handleDatepickerEndDateChange: (date: string) => void;
-  renderChartTitle: () => string;
-  handleChartFilterButtonsChange: (intervalValue: string) => void;
-}
+import { UseDashboardProps, Return } from './types';
 
 export const useDashboard = ({ products }: UseDashboardProps): Return => {
   const [currentProduct, updateCurrentProduct] = useState<Product | null>(null);

@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react';
-import { Dashboard } from './Dashboard';
+import Dashboard from './Dashboard';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import MomentUtils from '@date-io/moment';
 import { MuiThemeProvider, createTheme } from '@material-ui/core/styles';

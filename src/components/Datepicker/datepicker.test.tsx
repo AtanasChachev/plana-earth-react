@@ -1,4 +1,4 @@
-import { Datepicker } from './Datepicker';
+import Datepicker from './Datepicker';
 import { screen, render, fireEvent } from '@testing-library/react';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import MomentUtils from '@date-io/moment';

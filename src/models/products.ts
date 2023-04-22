@@ -6,24 +6,19 @@ export interface Product {
   product_variable: string;
 }
 
-export interface ActiveProductFilters {
-  name: string;
+export interface ActiveProductFilters extends Pick<Product, 'name'> {
   country: Country;
   startDate: string;
   endDate: string;
   interval: string;
 }
 
-export interface ProductDateRange {
-  first: string;
-  last: string;
-}
+export type ProductDateRange = Required<Pick<Product, 'first' | 'last'>>;
 
-export type ProductAverage = {
-  average: number;
+export interface ProductAverage extends Pick<ProductStatisticsValue, 'average'>{
   end: string;
   start: string;
-};
+}
 
 export interface ProductStatistics {
   time: {

@@ -1,6 +1,6 @@
 import { screen, render, fireEvent, act, within } from '@testing-library/react';
 import { waitForElementToBeRemoved } from '@testing-library/dom';
-import { SelectComponent } from './Select';
+import SelectComponent from './Select';
 
 const MOCK_OPTIONS = [
   {

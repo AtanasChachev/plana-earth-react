@@ -1,14 +1,17 @@
 import Grid from '@material-ui/core/Grid';
-import { Section, SelectComponent, Datepicker, Chart, ChartFilterButtons, EmptyResults } from 'components/index';
 import { COUNTRIES } from 'constants/index';
 import { useDashboard } from './useDashboard';
-import { Loader } from 'components/index';
-import { Product } from 'services/products/getProducts/types';
+import Section from 'components/Section';
+import SelectComponent from 'components/Select/Select';
+import Datepicker from 'components/Datepicker';
+import Chart from 'components/Chart';
+import ChartFilterButtons from 'components/ChartFilterButtons';
+import EmptyResults from 'components/EmptyResults';
+import Loader from 'components/Loader';
+import { DashboardProps } from './types';
 
 import './Dashboard.scss';
-interface DashboardProps {
-  products: Product[];
-}
+
 
 const Dashboard = ({ products }: DashboardProps): JSX.Element => {
   const {
@@ -87,4 +90,4 @@ const Dashboard = ({ products }: DashboardProps): JSX.Element => {
   );
 };
 
-export { Dashboard };
+export default Dashboard;

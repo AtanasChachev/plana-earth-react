@@ -1,16 +1,10 @@
 import { Product } from 'models/products';
 import { Country } from 'models/products';
 import { InputLabel, MenuItem, FormControl, Select } from '@material-ui/core';
-import './Select.scss';
 import { useSelect } from './useSelect';
+import { SelectProps } from './types';
 
-export type SelectProps = {
-  placeholder: string;
-  options: Product[] | Country[];
-  className?: string;
-  ariaLabel?: string;
-  onChange(value: string | unknown, name?: string): void;
-};
+import './Select.scss';
 
 const SelectComponent = ({ options, placeholder, className, ariaLabel, onChange }: SelectProps): JSX.Element => {
   const {
@@ -44,4 +38,4 @@ const SelectComponent = ({ options, placeholder, className, ariaLabel, onChange 
   );
 };
 
-export { SelectComponent };
+export default SelectComponent;

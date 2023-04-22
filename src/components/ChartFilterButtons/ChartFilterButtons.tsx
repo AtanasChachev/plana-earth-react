@@ -2,12 +2,8 @@ import { Button } from '@material-ui/core';
 import { capitalizeWords } from 'utils/helpers';
 import { CHART_SETTINGS  } from 'constants/index';
 import { useChartFilterButtons } from './useChartFilterButtons';
-
+import { ChartFilterButtonsProps } from './types';
 import './ChartFilterButtons.scss';
-
-export interface ChartFilterButtonsProps {
-  onClick(interval: string): void;
-}
 
 const ChartFilterButtons = ({ onClick }: ChartFilterButtonsProps): JSX.Element => {
   const { activeIndex, handleFilterButton } = useChartFilterButtons({ onClick });
@@ -34,4 +30,4 @@ const ChartFilterButtons = ({ onClick }: ChartFilterButtonsProps): JSX.Element =
   );
 };
 
-export { ChartFilterButtons };
+export default ChartFilterButtons;

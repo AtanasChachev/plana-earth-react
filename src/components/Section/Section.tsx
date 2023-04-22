@@ -1,12 +1,5 @@
+import { SectionProps } from './types';
 import './Section.scss';
-
-interface SectionProps {
-  children: JSX.Element | JSX.Element[];
-  isFullHeight?: boolean;
-  headerTitle?: string;
-  shAlignInlineBlockOnMobile?: boolean;
-  isEmptyBlockActive: boolean;
-}
 
 const Section = ({ 
   children, 
@@ -31,4 +24,4 @@ const Section = ({
     </div>
   </div>;
 
-export { Section };
+export default Section;

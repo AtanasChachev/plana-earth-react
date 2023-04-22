@@ -1,4 +1,4 @@
-import { ChartFilterButtons } from './ChartFilterButtons';
+import ChartFilterButtons from './ChartFilterButtons';
 import { render, screen, act, fireEvent } from '@testing-library/react';
 
 const onClick = jest.fn();

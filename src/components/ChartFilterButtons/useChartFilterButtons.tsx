@@ -1,10 +1,6 @@
 import { useState } from 'react';
-import { ChartFilterButtonsProps } from './ChartFilterButtons';
-
-interface Return {
-  activeIndex: number;
-  handleFilterButton: (interval: string, index: number) => void;
-}
+import { ChartFilterButtonsProps } from './types';
+import { Return } from './types';
 
 export const useChartFilterButtons = ({ onClick }: ChartFilterButtonsProps): Return => {
   const [activeIndex, updateActiveIndex] = useState<number>(0);
